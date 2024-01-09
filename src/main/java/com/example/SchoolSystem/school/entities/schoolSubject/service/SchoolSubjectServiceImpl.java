@@ -4,6 +4,7 @@ import com.example.SchoolSystem.school.database.subject.ISchoolSubjectDao;
 import com.example.SchoolSystem.school.entities.schoolSubject.SchoolSubject;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
+import lombok.RequiredArgsConstructor;
 import org.apache.poi.xwpf.usermodel.TableRowHeightRule;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -15,13 +16,12 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class SchoolSubjectServiceImpl implements ISchoolSubjectService {
 
     private final ISchoolSubjectDao schoolSubjectDao;
 
-    public SchoolSubjectServiceImpl(@Autowired ISchoolSubjectDao schoolSubjectDao) {
-        this.schoolSubjectDao = schoolSubjectDao;
-    }
+
 
     @Override
     public SchoolSubject add(SchoolSubject subject) {

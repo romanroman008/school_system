@@ -64,7 +64,6 @@ class FreePeriodFiller {
 
         });
 
-        System.out.println(amount);
     }
 
 
@@ -130,7 +129,7 @@ class FreePeriodFiller {
 
 
         });
-        System.out.println(amount);
+
     }
 
 

@@ -10,7 +10,6 @@ Then assign teachers to subjects(one teacher can teach many subjects), students 
 subjects to classes and teachers to classes(there can be several teachers of one subject). Classes can be created automatically using a chosen strategy(alphabetically or by age). 
 The allocation of teachers can also be done automatically. If all parameters are set, the programme can generate a timetable.
 
-Postman requests:
 
 
 ### Student
