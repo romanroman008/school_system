@@ -2,13 +2,13 @@
 
 ## Summary
 This program is designed to streamline the management of staff and pupils in a school setting. 
-It offers a comprehensive approach to handling various administrative tasks, primarily focusing on the creation of timetables.
+It offers a comprehensive approach to handling various administrative tasks, primarily focusing on the timetable generating.
 
 ## Description of usage
 Students, teachers and subjects must be added to the programme. 
 Then assign teachers to subjects(one teacher can teach many subjects), students to classes, 
 subjects to classes and teachers to classes(there can be several teachers of one subject). Classes can be created automatically using a chosen strategy(alphabetically or by age). 
-The allocation of teachers can also be done automatically. If all parameters are set, the programme can generate a timetable.
+The allocation of teachers can also be done automatically. If all parameters are set, the application can create a timetable.
 
 
 
