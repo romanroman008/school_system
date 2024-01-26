@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
-@RequestMapping("api/schoolSubject")
+@RequestMapping("api/schoolSubjects")
 @RestController
 @Validated
 public class SchoolSubjectController {
@@ -58,7 +58,7 @@ public class SchoolSubjectController {
             SchoolSubject subject = schoolSubjectService.findById(id);
             return new ResponseEntity<>(ToDtoSchoolSubjectConverter.convert(subject), HttpStatus.OK);
         } catch (EntityNotFoundException e) {
-            return new ResponseEntity<>("Object not found: %s " + e.getMessage(), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Object not found: %s " + e.getMessage(), HttpStatus.NO_CONTENT);
         }
         catch (Exception e){
             return new ResponseEntity<>("Object not found: %s " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
@@ -74,7 +74,7 @@ public class SchoolSubjectController {
             schoolSubjectService.delete(id);
             return new ResponseEntity<>("Subject deleted.", HttpStatus.OK);
         } catch (EmptyResultDataAccessException e) {
-            return new ResponseEntity<>("Error when deleting object: %s" + e.getMessage(), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Error when deleting object: %s" + e.getMessage(), HttpStatus.NO_CONTENT);
         }catch (Exception e){
             return new ResponseEntity<>("Error when deleting object: %s" + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }

@@ -3,26 +3,30 @@ package com.example.SchoolSystem.school.web.controllers;
 import com.example.SchoolSystem.school.entities.person.student.service.IStudentService;
 import com.example.SchoolSystem.school.entities.person.student.Student;
 import com.example.SchoolSystem.school.web.dto.student.StudentDto;
-import com.example.SchoolSystem.school.web.dto.student.converters.FromRequestStudentConverter;
+import com.example.SchoolSystem.school.web.dto.student.converters.StudentConverter;
 import com.example.SchoolSystem.school.web.dto.student.StudentRequest;
-import com.example.SchoolSystem.school.web.dto.student.converters.ToDtoStudentConverter;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotEmpty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.Link;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
-@RequestMapping("api/student")
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
+
+@RequestMapping(value = "api/students")
 @RestController
 @Validated
 public class StudentController {
@@ -30,90 +34,74 @@ public class StudentController {
     private IStudentService studentService;
 
     @Autowired
-    private FromRequestStudentConverter fromRequestStudentConverter;
+    private StudentConverter studentConverter;
 
-    @PostMapping
-    public ResponseEntity<Object> add(@Valid @RequestBody StudentRequest student) {
-        try {
-            Student saved = studentService.add(fromRequestStudentConverter.convert(student));
-            return new ResponseEntity<>(ToDtoStudentConverter.convert(saved), HttpStatus.OK);
-        } catch (EntityExistsException e) {
-            return new ResponseEntity<>(String.format("Error when saving object: %s", e.getMessage()), HttpStatus.BAD_REQUEST);
-        } catch (Exception e) {
-            return new ResponseEntity<>(String.format("Error when saving object: %s", e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+    @PostMapping(headers = "X-API-VERSION=1")
+    public EntityModel<StudentDto> add(@Valid @RequestBody StudentRequest student) {
+        Student saved = studentService.add(studentConverter.fromRequest(student));
+
+        EntityModel<StudentDto> entityModel = EntityModel.of(studentConverter.toDto(saved));
+        WebMvcLinkBuilder link = linkTo(methodOn(this.getClass()).read());
+        entityModel.add(link.withRel("all_students"));
+        return entityModel;
+    }
+
+    @PostMapping(value = "/list", headers = "X-API-VERSION=1")
+    public CollectionModel<StudentDto> add(@RequestBody List<@Valid StudentRequest> requests) {
+        List<StudentDto> students = studentConverter.toDto(studentService.addAll(studentConverter.fromRequest(requests)));
+
+        for (final StudentDto student : students) {
+            Long id = student.getId();
+            Link selfLink = linkTo(StudentController.class).slash(id).withSelfRel();
+            student.add(selfLink);
         }
+
+        Link link = linkTo(StudentController.class).withSelfRel();
+        return CollectionModel.of(students, link);
 
 
     }
 
-    @PostMapping("/all")
-    public ResponseEntity<Object> add(@RequestBody List<@Valid StudentRequest> requests) {
-        try {
-            List<Student> saved = studentService.addAll(fromRequestStudentConverter.convert(requests));
-            return new ResponseEntity<>(ToDtoStudentConverter.convert(saved), HttpStatus.OK);
-        } catch (EntityExistsException e) {
-            return new ResponseEntity<>(String.format("Error when saving object: %s", e.getMessage()), HttpStatus.BAD_REQUEST);
-        } catch (Exception e) {
-            return new ResponseEntity<>(String.format("Error when saving object: %s", e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    @GetMapping(value = "/{id}", headers = "X-API-VERSION=1")
+    public EntityModel<StudentDto> read(@PathVariable Long id) {
+        Student student = studentService.findById(id);
 
-
+        EntityModel<StudentDto> entityModel = EntityModel.of(studentConverter.toDto(student));
+        WebMvcLinkBuilder link = linkTo(methodOn(this.getClass()).read(id));
+        entityModel.add(link.withRel("self"));
+        return entityModel;
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Object> read(@PathVariable Long id) {
-        try {
-            Student student = studentService.findById(id);
-            return new ResponseEntity<>(ToDtoStudentConverter.convert(student), HttpStatus.OK);
-        } catch (EntityNotFoundException e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
-        } catch (DataIntegrityViolationException e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-    @GetMapping("/all")
-    public ResponseEntity<Object> read() {
-        try {
+    @GetMapping(headers = "X-API-VERSION=1")
+    public CollectionModel<StudentDto> read() {
+        List<StudentDto> students = studentConverter.toDto(studentService.findAll());
 
-            List<StudentDto> students = ToDtoStudentConverter.convert(studentService.findAll());
-            return new ResponseEntity<>(students, HttpStatus.OK);
-        }catch (Exception e){
-            return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+        for (final StudentDto student : students) {
+            Long id = student.getId();
+            Link selfLink = linkTo(StudentController.class).slash(id).withSelfRel();
+            student.add(selfLink);
         }
+
+        Link link = linkTo(StudentController.class).withSelfRel();
+        return CollectionModel.of(students, link);
     }
 
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Object> update(@PathVariable Long id, @Valid @RequestBody StudentRequest request) {
-        try {
-            Student saved = studentService.update(id, fromRequestStudentConverter.convert(request));
-            return new ResponseEntity<>(ToDtoStudentConverter.convert(saved), HttpStatus.OK);
-        } catch (EntityNotFoundException e){
-            return new ResponseEntity<>(String.format("Error when updating object: %s", e.getMessage()), HttpStatus.BAD_REQUEST);
-        }
-        catch (Exception e) {
-            return new ResponseEntity<>(String.format("Error when updating object: %s", e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    @PutMapping(value = "/{id}", headers = "X-API-VERSION=1")
+    public EntityModel<StudentDto> update(@PathVariable Long id, @Valid @RequestBody StudentRequest request) {
+        StudentDto saved = studentConverter.toDto(studentService.update(id, studentConverter.fromRequest(request)));
+
+        Link selfLink = linkTo(StudentController.class).slash(saved.getId()).withSelfRel();
+        saved.add(selfLink);
+        return EntityModel.of(saved).add(selfLink);
     }
 
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Object> delete (@PathVariable("id") Long id){
-        try {
-            studentService.delete(id);
-            return new ResponseEntity<>("Student deleted.", HttpStatus.OK);
-        } catch (EmptyResultDataAccessException e) {
-            return new ResponseEntity<>("Error when deleting object: %s" + e.getMessage(), HttpStatus.NOT_FOUND);
-        }catch (Exception e){
-            return new ResponseEntity<>("Error when deleting object: %s" + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-
+    @DeleteMapping(value = "/{id}", headers = "X-API-VERSION=1")
+    public ResponseEntity<Object> delete(@PathVariable("id") Long id) {
+        studentService.delete(id);
+        return new ResponseEntity<>("Student deleted.", HttpStatus.OK);
     }
-
-
-
-
-
 
 
 }

@@ -11,6 +11,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -35,7 +36,7 @@ public class StudentServiceImpl implements IStudentService {
                 .map(Student::getFullName)
                 .toList();
         if (!teachersAlreadyExisting.isEmpty())
-            throw new EntityExistsException(String.format("List of students contains already existing teachers: %s", teachersAlreadyExisting));
+            throw new EntityExistsException(String.format("List of students contains already existing students: %s", teachersAlreadyExisting));
 
         return studentDao.saveAll(students);
     }
@@ -62,6 +63,7 @@ public class StudentServiceImpl implements IStudentService {
         studentDao.flush();
         return student;
     }
+
 
     @Override
     public Student findById(Long id) {

@@ -13,39 +13,36 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
-@RequestMapping("api/schoolClass")
+@RequestMapping("api/schoolClasses")
 @RestController
-public class SchoolClassController{
+public class SchoolClassController {
 
     @Autowired
     private ISchoolClassService schoolClassService;
 
 
     @PostMapping("/create")
-    public ResponseEntity<Object> createClasses(@RequestParam int strategy){
-        try{
+    public ResponseEntity<Object> createClasses(@RequestParam int strategy) {
+        try {
             List<SchoolClass> created = schoolClassService.create(strategy);
             return new ResponseEntity<>(ToDtoSchoolClassConverter.convert(created), HttpStatus.OK);
-        }catch (Exception e){
-            return new ResponseEntity<>(e,HttpStatus.BAD_REQUEST);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e, HttpStatus.BAD_REQUEST);
         }
     }
 
     @GetMapping
-    public ResponseEntity<Object> getAll(){
-        try{
-            List<SchoolClass> created = schoolClassService.findAll();
-            return new ResponseEntity<>(ToDtoSchoolClassConverter.convert(created), HttpStatus.OK);
-        }catch (Exception e){
-            return new ResponseEntity<>(e,HttpStatus.BAD_REQUEST);
-        }
+    public ResponseEntity<Object> getAll() {
+
+        List<SchoolClass> created = schoolClassService.findAll();
+        return new ResponseEntity<>(ToDtoSchoolClassConverter.convert(created), HttpStatus.OK);
+
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id){
+    public void delete(@PathVariable Long id) {
         schoolClassService.remove(id);
     }
-
 
 
 }

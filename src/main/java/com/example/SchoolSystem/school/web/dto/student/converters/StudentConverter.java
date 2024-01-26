@@ -6,6 +6,7 @@ import com.example.SchoolSystem.school.entities.person.PersonInformation;
 import com.example.SchoolSystem.school.entities.person.student.Student;
 import com.example.SchoolSystem.school.entities.schoolClass.Grade;
 import com.example.SchoolSystem.school.exceptions.StudentsAgeException;
+import com.example.SchoolSystem.school.web.dto.student.StudentDto;
 import com.example.SchoolSystem.school.web.dto.student.StudentRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -16,19 +17,37 @@ import java.util.List;
 
 @Component
 @RequiredArgsConstructor
-public class FromRequestStudentConverter {
+public class StudentConverter {
 
     private final AppConfig appConfig;
 
 
-    public List<Student> convert(List<StudentRequest> requests) {
-        return requests.stream().map(this::convert).toList();
+    public List<Student> fromRequest(List<StudentRequest> requests) {
+        return requests.stream().map(this::fromRequest).toList();
     }
 
-    public Student convert(StudentRequest request) {
+    public Student fromRequest(StudentRequest request) {
         Address address = createAddress(request);
         PersonInformation personInformation = createPersonInformation(request);
         return new Student(personInformation, address, getGradeFromBirthday(request));
+    }
+
+
+    public StudentDto toDto(Student student){
+        return new StudentDto(
+                student.getId(),
+                student.getPersonInformation().getFirstName(),
+                student.getPersonInformation().getLastName(),
+                student.getSchoolClass()
+        );
+    }
+
+
+
+    public List<StudentDto> toDto(List<Student> students){
+        return students
+                .stream()
+                .map(this::toDto).toList();
     }
 
 
