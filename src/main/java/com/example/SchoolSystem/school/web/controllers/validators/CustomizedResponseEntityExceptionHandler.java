@@ -1,5 +1,9 @@
-package com.example.SchoolSystem.school.web.exceptions;
+package com.example.SchoolSystem.school.web.controllers.validators;
 
+import com.example.SchoolSystem.school.exceptions.NotEnoughTeachersException;
+import com.example.SchoolSystem.school.exceptions.SchoolClassHasToManyLessonsPerWeekException;
+import com.example.SchoolSystem.school.timetable.timetablePlainObjects.HireRecommendation;
+import com.example.SchoolSystem.school.web.exceptions.ErrorDetails;
 import jakarta.persistence.EntityExistsException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,4 +36,20 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
 
         return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
     }
+    @ExceptionHandler(NotEnoughTeachersException.class)
+    public final ResponseEntity<Object> handleNotEnoughTeachersException(NotEnoughTeachersException ex, WebRequest request){
+        return new ResponseEntity<>(ex.getHireRecommendation(),HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(SchoolClassHasToManyLessonsPerWeekException.class)
+    public final ResponseEntity<Object> handleTooManyLessonsException(Exception ex, WebRequest request) {
+        ErrorDetails errorDetails = new ErrorDetails(
+                LocalDate.now(),
+                ex.getMessage(),
+                request.getDescription(false));
+
+        return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
+    }
+
+
 }

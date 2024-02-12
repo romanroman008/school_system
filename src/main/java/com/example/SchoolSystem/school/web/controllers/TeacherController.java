@@ -3,15 +3,20 @@ package com.example.SchoolSystem.school.web.controllers;
 
 import com.example.SchoolSystem.school.entities.person.teacher.Teacher;
 import com.example.SchoolSystem.school.entities.person.teacher.service.ITeacherService;
+import com.example.SchoolSystem.school.web.dto.schoolSubject.SchoolSubjectDto;
+import com.example.SchoolSystem.school.web.dto.student.StudentDto;
 import com.example.SchoolSystem.school.web.dto.teacher.TeacherDto;
 import com.example.SchoolSystem.school.web.dto.teacher.TeacherRequest;
-import com.example.SchoolSystem.school.web.dto.teacher.converters.FromRequestTeacherConverter;
-import com.example.SchoolSystem.school.web.dto.teacher.converters.ToDtoTeacherConverter;
+import com.example.SchoolSystem.school.web.dto.teacher.converters.TeacherConverter;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.Link;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -19,90 +24,80 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+
 
 @RestController
 @Validated
-@RequestMapping("api/teacher")
+@RequestMapping("api/teachers")
 public class TeacherController {
 
     @Autowired
     private ITeacherService teacherService;
 
     @Autowired
-    private FromRequestTeacherConverter fromRequestTeacherConverter;
+    private TeacherConverter teacherConverter;
 
 
-    @PostMapping
-    public ResponseEntity<Object> add(@Valid @RequestBody TeacherRequest request) {
-        try {
-            Teacher saved = teacherService.add(fromRequestTeacherConverter.convert(request));
-            return new ResponseEntity<>(ToDtoTeacherConverter.convert(saved), HttpStatus.OK);
-        } catch (EntityExistsException e) {
-            return new ResponseEntity<>(String.format("Error when saving teacher: %s", e.getMessage()), HttpStatus.BAD_REQUEST);
-        } catch (Exception e) {
-            return new ResponseEntity<>(String.format("Error when saving teacher: %s", e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    @PostMapping(headers = "X-API-VERSION=1")
+    public EntityModel<TeacherDto> add(@Valid @RequestBody TeacherRequest request) {
 
-
+        TeacherDto saved = teacherConverter.toDto(teacherService.add(teacherConverter.fromRequest(request)));
+        return createEntityModel(saved);
     }
 
-    @PostMapping("/all")
-    public ResponseEntity<Object> add(@RequestBody List<@Valid TeacherRequest> requests) {
-        try {
-            List<Teacher> saved = teacherService.addAll(fromRequestTeacherConverter.convert(requests));
-            return new ResponseEntity<>(ToDtoTeacherConverter.convert(saved), HttpStatus.OK);
-        } catch (EntityExistsException e) {
-            return new ResponseEntity<>(String.format("Error when saving teachers: %s", e.getMessage()), HttpStatus.BAD_REQUEST);
-        } catch (Exception e) {
-            return new ResponseEntity<>(String.format("Error when saving teachers: %s", e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-
-
+    @PostMapping(value = "/list", headers = "X-API-VERSION=1")
+    public CollectionModel<TeacherDto> add(@RequestBody List<@Valid TeacherRequest> requests) {
+        List<TeacherDto> savedTeachers = teacherConverter.toDto(teacherService.addAll(teacherConverter.fromRequest(requests)));
+        return createCollectionModel(savedTeachers);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Object> read(@PathVariable Long id) {
-        try {
-            Teacher found = teacherService.findById(id);
-            return new ResponseEntity<>(ToDtoTeacherConverter.convert(found), HttpStatus.OK);
-        } catch (EntityNotFoundException e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
-        } catch (DataIntegrityViolationException e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-
+    @GetMapping(value = "/{id}", headers = "X-API-VERSION=1")
+    public EntityModel<TeacherDto> read(@PathVariable Long id) {
+        TeacherDto teacher = teacherConverter.toDto(teacherService.findById(id));
+        return createEntityModel(teacher);
     }
 
-    @GetMapping("/all")
-    public ResponseEntity<List<TeacherDto>> read() {
-        List<TeacherDto> teachers = ToDtoTeacherConverter.convert(teacherService.findAll());
-        return new ResponseEntity<>(teachers, HttpStatus.OK);
+    @GetMapping(headers = "X-API-VERSION=1")
+    public CollectionModel<TeacherDto> read() {
+        List<TeacherDto> teachers = teacherConverter.toDto(teacherService.findAll());
+        return createCollectionModel(teachers);
     }
 
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Object> update(@PathVariable Long id, @Valid @RequestBody TeacherRequest request) {
-        try {
-            Teacher saved = teacherService.update(id, fromRequestTeacherConverter.convert(request));
-            return new ResponseEntity<>(ToDtoTeacherConverter.convert(saved), HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(String.format("Error when updating teacher: %s", e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+
+    @PutMapping(value = "/{id}", headers = "X-API-VERSION=1")
+    public EntityModel<TeacherDto> update(@PathVariable Long id, @Valid @RequestBody TeacherRequest request) {
+        TeacherDto saved = teacherConverter.toDto(teacherService.update(id, teacherConverter.fromRequest(request)));
+        return createEntityModel(saved);
     }
 
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping(value = "/{id}", headers = "X-API-VERSION=1")
     public ResponseEntity<Object> delete(@PathVariable Long id) {
-        try {
-            Teacher deleted = teacherService.delete(id);
-            return new ResponseEntity<>(ToDtoTeacherConverter.convert(deleted), HttpStatus.OK);
-        } catch (EntityNotFoundException e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
-        } catch (DataIntegrityViolationException e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        Teacher deleted = teacherService.delete(id);
+        return new ResponseEntity<>(teacherConverter.toDto(deleted), HttpStatus.OK);
+
     }
 
+
+    private EntityModel<TeacherDto> createEntityModel(TeacherDto teacher) {
+        Link selfLink = linkTo(TeacherController.class).slash(teacher.getId()).withSelfRel();
+        Link link = linkTo(TeacherController.class).withSelfRel();
+
+        return EntityModel.of(teacher).add(selfLink).add(link);
+    }
+
+    private CollectionModel<TeacherDto> createCollectionModel(List<TeacherDto> teachers) {
+        for (final TeacherDto teacher : teachers) {
+            Long id = teacher.getId();
+            Link selfLink = linkTo(TeacherController.class).slash(id).withSelfRel();
+            teacher.add(selfLink);
+        }
+
+        Link link = linkTo(TeacherController.class).withSelfRel();
+        return CollectionModel.of(teachers, link);
+    }
 
 }
 

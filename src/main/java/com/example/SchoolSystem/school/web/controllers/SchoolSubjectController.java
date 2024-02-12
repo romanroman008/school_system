@@ -4,13 +4,15 @@ import com.example.SchoolSystem.school.entities.schoolSubject.SchoolSubject;
 import com.example.SchoolSystem.school.entities.schoolSubject.service.ISchoolSubjectService;
 import com.example.SchoolSystem.school.web.dto.schoolSubject.SchoolSubjectDto;
 import com.example.SchoolSystem.school.web.dto.schoolSubject.SchoolSubjectRequest;
-import com.example.SchoolSystem.school.web.dto.schoolSubject.converters.FromRequestSchoolSubjectConverter;
-import com.example.SchoolSystem.school.web.dto.schoolSubject.converters.ToDtoSchoolSubjectConverter;
-import jakarta.persistence.EntityExistsException;
+import com.example.SchoolSystem.school.web.dto.schoolSubject.converters.SchoolSubjectConverter;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.Link;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -18,88 +20,72 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 
-@RequestMapping("api/schoolSubjects")
+
+@RequestMapping("api/school-subjects")
 @RestController
 @Validated
 public class SchoolSubjectController {
     @Autowired
     private ISchoolSubjectService schoolSubjectService;
+    @Autowired
+    private SchoolSubjectConverter schoolSubjectConverter;
 
-    @PostMapping
-    public ResponseEntity<Object> add(@RequestBody @Valid SchoolSubjectRequest request) {
-        try {
-            SchoolSubject saved = schoolSubjectService.add(FromRequestSchoolSubjectConverter.convert(request));
-            return new ResponseEntity<>(ToDtoSchoolSubjectConverter.convert(saved), HttpStatus.OK);
-        } catch (EntityExistsException e) {
-            return new ResponseEntity<>("Error when saving object: %s" + e.getMessage(), HttpStatus.BAD_REQUEST);
-        } catch (Exception e) {
-            return new ResponseEntity<>("Error when saving object: %s" + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-
+    @PostMapping(headers = "X-API-VERSION=1")
+    public EntityModel<SchoolSubjectDto> add(@RequestBody @Valid SchoolSubjectRequest request) {
+        SchoolSubjectDto saved = schoolSubjectConverter.toDto(schoolSubjectService.add(schoolSubjectConverter.fromRequest(request)));
+        return createEntityModelWithHateoas(saved);
     }
 
-    @PostMapping("/all")
-    public ResponseEntity<Object> add(@RequestBody List<@Valid SchoolSubjectRequest> requests) {
-        try {
-            List<SchoolSubject> saved = schoolSubjectService.addAll(FromRequestSchoolSubjectConverter.convert(requests));
-            return new ResponseEntity<>(ToDtoSchoolSubjectConverter.convert(saved), HttpStatus.OK);
-        }
-        catch (Exception e) {
-            return new ResponseEntity<>("Error when saving object: %s" + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-
-
+    @PostMapping(value = "/list", headers = "X-API-VERSION=1")
+    public CollectionModel<SchoolSubjectDto> add(@RequestBody List<@Valid SchoolSubjectRequest> requests) {
+        List<SchoolSubjectDto> saved = schoolSubjectConverter.toDto(schoolSubjectService.addAll(schoolSubjectConverter.fromRequest(requests)));
+        return createCollectionModelWithHateoas(saved);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Object> read(@PathVariable Long id) {
-        try {
-            SchoolSubject subject = schoolSubjectService.findById(id);
-            return new ResponseEntity<>(ToDtoSchoolSubjectConverter.convert(subject), HttpStatus.OK);
-        } catch (EntityNotFoundException e) {
-            return new ResponseEntity<>("Object not found: %s " + e.getMessage(), HttpStatus.NO_CONTENT);
-        }
-        catch (Exception e){
-            return new ResponseEntity<>("Object not found: %s " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    @GetMapping(value = "/{id}", headers = "X-API-VERSION=1")
+    public EntityModel<SchoolSubjectDto> read(@PathVariable Long id) {
+
+        SchoolSubjectDto found = schoolSubjectConverter.toDto(schoolSubjectService.findById(id));
+        return createEntityModelWithHateoas(found);
 
     }
 
 
-
-    @DeleteMapping("/{id}")
+    @DeleteMapping(value = "/{id}", headers = "X-API-VERSION=1")
     public ResponseEntity<Object> delete(@PathVariable("id") Long id) {
-        try {
-            schoolSubjectService.delete(id);
-            return new ResponseEntity<>("Subject deleted.", HttpStatus.OK);
-        } catch (EmptyResultDataAccessException e) {
-            return new ResponseEntity<>("Error when deleting object: %s" + e.getMessage(), HttpStatus.NO_CONTENT);
-        }catch (Exception e){
-            return new ResponseEntity<>("Error when deleting object: %s" + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        schoolSubjectService.delete(id);
+        return new ResponseEntity<>("Subject deleted.", HttpStatus.OK);
+    }
+
+    @PutMapping(value = "/{id}", headers = "X-API-VERSION=1")
+    public EntityModel<SchoolSubjectDto> update(@PathVariable("id") Long id, @RequestBody SchoolSubjectRequest request) {
+        SchoolSubjectDto updated = schoolSubjectConverter.toDto(schoolSubjectService.update(id, schoolSubjectConverter.fromRequest(request)));
+        return createEntityModelWithHateoas(updated);
+    }
+
+
+    @GetMapping(headers = "X-API-VERSION=1")
+    public CollectionModel<SchoolSubjectDto> getALL() {
+        List<SchoolSubjectDto> subjects = schoolSubjectConverter.toDto(schoolSubjectService.findAll());
+        return createCollectionModelWithHateoas(subjects);
+    }
+
+
+    private EntityModel<SchoolSubjectDto> createEntityModelWithHateoas(SchoolSubjectDto schoolSubjectDto) {
+        Link selfLink = linkTo(SchoolSubjectController.class).slash(schoolSubjectDto.getId()).withSelfRel();
+        Link link = linkTo(SchoolSubjectController.class).withSelfRel();
+        return EntityModel.of(schoolSubjectDto).add(selfLink).add(link);
+    }
+
+    private CollectionModel<SchoolSubjectDto> createCollectionModelWithHateoas(List<SchoolSubjectDto> schoolSubjects) {
+        for (final SchoolSubjectDto schoolSubjectDto : schoolSubjects) {
+            Long id = schoolSubjectDto.getId();
+            Link selfLink = linkTo(SchoolSubjectController.class).slash(id).withSelfRel();
+            schoolSubjectDto.add(selfLink);
         }
-
+        Link link = linkTo(SchoolSubjectController.class).withSelfRel();
+        return CollectionModel.of(schoolSubjects, link);
     }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<Object> update(@RequestParam Long id, @RequestBody SchoolSubjectRequest request) {
-        try{
-            SchoolSubject updated = schoolSubjectService.update(id,FromRequestSchoolSubjectConverter.convert(request));
-            return new ResponseEntity<>(ToDtoSchoolSubjectConverter.convert(updated), HttpStatus.OK);
-        }catch (EntityNotFoundException e){
-            return new ResponseEntity<>("Error when updating object: %s" + e.getMessage(), HttpStatus.NOT_FOUND);
-        }catch (Exception e){
-            return new ResponseEntity<>("Error when updating object: %s" + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-
-    }
-
-
-
-    @GetMapping("/all")
-    public ResponseEntity<List<SchoolSubjectDto>> getALL() {
-        List<SchoolSubjectDto> subjects = ToDtoSchoolSubjectConverter.convert(schoolSubjectService.findAll());
-        return new ResponseEntity<>(subjects, HttpStatus.OK);
-    }
-
 }

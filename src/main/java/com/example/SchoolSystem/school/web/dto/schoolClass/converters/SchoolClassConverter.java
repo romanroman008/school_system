@@ -4,14 +4,16 @@ import com.example.SchoolSystem.school.entities.person.student.Student;
 import com.example.SchoolSystem.school.entities.schoolClass.SchoolClass;
 import com.example.SchoolSystem.school.entities.schoolClass.SubjectToTeacherAssignment;
 import com.example.SchoolSystem.school.web.dto.schoolClass.SchoolClassDto;
+import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ToDtoSchoolClassConverter {
+@Component
+public class SchoolClassConverter {
 
-    public static SchoolClassDto convert(SchoolClass schoolClass){
+    public SchoolClassDto toDto(SchoolClass schoolClass){
          return new SchoolClassDto(
                  schoolClass.getId(),
                  schoolClass.getTotalGrade(),
@@ -20,11 +22,11 @@ public class ToDtoSchoolClassConverter {
          );
     }
 
-    public static List<SchoolClassDto> convert(List<SchoolClass> classes){
-        return classes.stream().map(ToDtoSchoolClassConverter::convert).toList();
+    public List<SchoolClassDto> toDto(List<SchoolClass> classes){
+        return classes.stream().map(this::toDto).toList();
     }
 
-    private static Map<String,String> fromObjectsToString(List<SubjectToTeacherAssignment> assignments){
+    private Map<String,String> fromObjectsToString(List<SubjectToTeacherAssignment> assignments){
         Map<String, String> converted = new HashMap<>();
         assignments.forEach((assignment) -> {
             if(assignment.isAssigned()){

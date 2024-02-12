@@ -8,6 +8,7 @@ import com.example.SchoolSystem.school.timetable.assigner.IAutomaticTeacherToCla
 import com.example.SchoolSystem.school.web.assignments.*;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,53 +29,39 @@ public class AssignmentController {
     @Autowired
     IAutomaticTeacherToClassAssigner automaticTeacherToClassAssigner;
 
-    @PostMapping("/assign/studentsToClasses")
+    @PostMapping(value = "/students/to/classes", headers = "X-API-VERSION=1")
     public ResponseEntity<Object> assignStudentsToSchoolClasses(@RequestBody List<StudentToSchoolClassAssignmentRequest> requests) {
         return assign(requests);
     }
 
-    @PostMapping("/assign/subjectsToGrades")
+    @PostMapping(value = "/subjects/to/grades", headers = "X-API-VERSION=1")
     public ResponseEntity<Object> assignSubjectsToGrades(@RequestBody List<SubjectsToGradesAssignmentRequest> requests) {
         return assign(requests);
     }
 
-    @PostMapping("/assign/teachersToClasses")
+    @PostMapping(value = "/teachers/to/classes", headers = "X-API-VERSION=1")
     public ResponseEntity<Object> assignTeachersToSchoolClasses(@RequestBody List<TeacherToSchoolClassAssignmentRequest> requests) {
         return assign(requests);
     }
 
-    @PostMapping("/assign/teachersToSubjects")
+    @PostMapping(value = "/teachers/to/subjects", headers = "X-API-VERSION=1")
     public ResponseEntity<Object> assignTeachersToSubjects(@RequestBody List<TeachersToSubjectsAssignmentRequest> requests) {
         return assign(requests);
     }
 
-    @PostMapping("/assign/teachersToClasses/auto")
+    @PostMapping(value = "/teachers/to/classes/auto", headers = "X-API-VERSION=1")
     public ResponseEntity<Object> assignTeachersAutomatically(){
-        try {
-            automaticTeacherToClassAssigner.assign();
-            return  new ResponseEntity<>("ok", HttpStatus.OK);
-        }catch (NotEnoughTeachersException e){
-            return new ResponseEntity<>(e.getHireRecommendation(),HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-        catch (Exception e){
-            return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-
+        automaticTeacherToClassAssigner.assign();
+        return  new ResponseEntity<>("ok", HttpStatus.OK);
 
     }
 
     private ResponseEntity<Object> assign(List<? extends IAssignment> requests) {
-        try {
-            Map<String, List<String>> assigned = assignmentService.assign(requests);
-            return new ResponseEntity<>(assigned, HttpStatus.OK);
-        } catch (EntityNotFoundException e) {
-            return new ResponseEntity<>(String.format("Unsuccesfull assigning. %s", e.getMessage()), HttpStatus.NOT_FOUND);
-        } catch (IllegalArgumentException e) {
-            return new ResponseEntity<>(String.format("Unsuccesfull assigning. %s", e.getMessage()), HttpStatus.BAD_REQUEST);
-        } catch (Exception e) {
-            return new ResponseEntity<>(String.format("Unsuccesfull assigning. %s", e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        Map<String, List<String>> assigned = assignmentService.assign(requests);
+        return new ResponseEntity<>(assigned, HttpStatus.OK);
     }
+
+
 
 
 }

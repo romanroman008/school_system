@@ -2,10 +2,19 @@ package com.example.SchoolSystem.school.web.dto.teacher;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import org.springframework.hateoas.RepresentationModel;
 
 import java.util.List;
 
 
-public record TeacherDto(Long id, String firstName, String lastName, List<String> teachingSubjects, List<String> teachingClasses) {
+@Getter
+@AllArgsConstructor
+public class TeacherDto extends RepresentationModel<TeacherDto> {
+
+    private Long id;
+    private String firstName;
+    private String lastName;
+    private List<String> teachingSubjects;
+    private List<String> teachingClasses;
 }
 

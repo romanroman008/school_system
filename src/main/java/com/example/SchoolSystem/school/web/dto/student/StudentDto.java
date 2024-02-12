@@ -10,9 +10,9 @@ import org.springframework.hateoas.RepresentationModel;
 @Getter
 @AllArgsConstructor
 public class StudentDto extends RepresentationModel<StudentDto>{
-    Long id;
-    String firstName;
-    String lastName;
-    String className;
+    private Long id;
+    private String firstName;
+    private String lastName;
+    private String className;
 
 }

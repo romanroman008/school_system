@@ -2,7 +2,7 @@ package com.example.SchoolSystem.school.timetable.service;
 
 import com.example.SchoolSystem.printer.IPrinter;
 import com.example.SchoolSystem.school.database.timetable.ITimetableRepository;
-import com.example.SchoolSystem.school.entities.assignments.IAssignmentService;
+
 import com.example.SchoolSystem.school.timetable.converter.TimetableConverter;
 import com.example.SchoolSystem.school.timetable.factory.ITimetableFactory;
 import com.example.SchoolSystem.school.timetable.timetablePlainObjects.Timetable;
