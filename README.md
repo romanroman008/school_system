@@ -53,7 +53,7 @@ The allocation of teachers can also be done automatically. If all parameters are
 
 ###### Single Student
 
-- **Endpoint:** `POST /students`
+- **Endpoint:** `POST api/students`
 - **Request Body:**
     - `StudentRequest` object representing a single student.
 - **Response:**
@@ -62,7 +62,7 @@ The allocation of teachers can also be done automatically. If all parameters are
     - `500 Internal Server Error` for other errors.
 
 ###### Multiple Students
-- **Endpoint:** `POST /students/all`
+- **Endpoint:** `POST api/students/list`
 - **Request Body:**
     - List of `StudentRequest` objects representing multiple students.
 - **Response:**
@@ -75,7 +75,7 @@ The allocation of teachers can also be done automatically. If all parameters are
 ##### Read Students
 
 ###### Single Student
-- **Endpoint:** `GET /students/{id}`
+- **Endpoint:** `GET api/students/{id}`
 - **Path Variable:**
     - `id` - ID of the student to retrieve.
 - **Response:**
@@ -84,14 +84,14 @@ The allocation of teachers can also be done automatically. If all parameters are
     - `500 Internal Server Error` for other errors.
 
 ###### All Students
-- **Endpoint:** `GET /students/all`
+- **Endpoint:** `GET api/students`
 - **Response:**
     - Returns a list of all students as `List<StudentDto>` if successful.
     - `500 Internal Server Error` for other errors.
 
 ##### Update a Student
 
-- **Endpoint:** `PUT /students/{id}`
+- **Endpoint:** `PUT api/students/{id}`
 - **Path Variable:**
     - `id` - ID of the student to update.
 - **Request Body:**
@@ -103,7 +103,7 @@ The allocation of teachers can also be done automatically. If all parameters are
 
 ##### Delete a Student
 
-- **Endpoint:** `DELETE /students/{id}`
+- **Endpoint:** `DELETE api/students/{id}`
 - **Path Variable:**
     - `id` - ID of the student to delete.
 - **Response:**
@@ -152,7 +152,7 @@ This Spring Boot application provides RESTful endpoints for managing teacher inf
 ##### Add a Teacher
 
 ###### Single Teacher
-- **Endpoint:** `POST /teachers`
+- **Endpoint:** `POST api/teachers`
 - **Request Body:**
     - `TeacherRequest` object representing a single teacher.
 - **Response:**
@@ -161,7 +161,7 @@ This Spring Boot application provides RESTful endpoints for managing teacher inf
     - `500 Internal Server Error` for other errors.
 
 ###### Multiple Teachers
-- **Endpoint:** `POST /teachers/all`
+- **Endpoint:** `POST api/teachers/list`
 - **Request Body:**
     - List of `TeacherRequest` objects representing multiple teachers.
 - **Response:**
@@ -172,7 +172,7 @@ This Spring Boot application provides RESTful endpoints for managing teacher inf
 ##### Retrieve Teachers
 
 ###### Single Teacher
-- **Endpoint:** `GET /teachers/{id}`
+- **Endpoint:** `GET api/teachers/{id}`
 - **Path Variable:**
     - `id` - ID of the teacher to retrieve.
 - **Response:**
@@ -181,14 +181,14 @@ This Spring Boot application provides RESTful endpoints for managing teacher inf
     - `500 Internal Server Error` for other errors.
 
 ###### Multiple Teachers
-- **Endpoint:** `GET /teachers/all`
+- **Endpoint:** `GET api/teachers/all`
 - **Response:**
     - Returns a list of all teachers as `List<TeacherDto>` if successful.
     - `500 Internal Server Error` for other errors.
 
 ##### Update a Teacher
 
-- **Endpoint:** `PUT /teachers/{id}`
+- **Endpoint:** `PUT api/teachers/{id}`
 - **Path Variable:**
     - `id` - ID of the teacher to update.
 - **Request Body:**
@@ -199,7 +199,7 @@ This Spring Boot application provides RESTful endpoints for managing teacher inf
 
 ##### Delete a Teacher
 
-- **Endpoint:** `DELETE /teachers/{id}`
+- **Endpoint:** `DELETE api/teachers/{id}`
 - **Path Variable:**
     - `id` - ID of the teacher to delete.
 - **Response:**
@@ -263,7 +263,7 @@ It supports basic CRUD operations (Create, Read, Update, Delete) for a `SchoolSu
 ##### Add a School Subject
 
 ###### Single School Subject
-- **Endpoint:** `POST /school-subjects`
+- **Endpoint:** `POST api/school-subjects`
 - **Request Body:**
   - `SchoolSubjectRequest` object representing a single school subject.
 - **Response:**
@@ -272,7 +272,7 @@ It supports basic CRUD operations (Create, Read, Update, Delete) for a `SchoolSu
   - `500 Internal Server Error` for other errors.
 
 ###### Multiple School Subjects
-- **Endpoint:** `POST /school-subjects/all`
+- **Endpoint:** `POST api/school-subjects/list`
 - **Request Body:**
   - List of `SchoolSubjectRequest` objects representing multiple school subjects.
 - **Response:**
@@ -282,7 +282,7 @@ It supports basic CRUD operations (Create, Read, Update, Delete) for a `SchoolSu
 ##### Retrieve School Subjects
 
 ###### Single School Subject
-- **Endpoint:** `GET /school-subjects/{id}`
+- **Endpoint:** `GET api/school-subjects/{id}`
 - **Path Variable:**
   - `id` - ID of the school subject to retrieve.
 - **Response:**
@@ -291,14 +291,14 @@ It supports basic CRUD operations (Create, Read, Update, Delete) for a `SchoolSu
   - `500 Internal Server Error` for other errors.
 
 ###### Multiple School Subjects
-- **Endpoint:** `GET /school-subjects/all`
+- **Endpoint:** `GET api/school-subjects`
 - **Response:**
   - Returns a list of all school subjects as `List<SchoolSubjectDto>` if successful.
   - `500 Internal Server Error` for other errors.
 
 ##### Update a School Subject
 
-- **Endpoint:** `PUT /school-subjects/{id}`
+- **Endpoint:** `PUT api/school-subjects/{id}`
 - **Request Parameter:**
   - `id` - ID of the school subject to update.
 - **Request Body:**
@@ -310,7 +310,7 @@ It supports basic CRUD operations (Create, Read, Update, Delete) for a `SchoolSu
 
 ##### Delete a School Subject
 
-- **Endpoint:** `DELETE /school-subjects/{id}`
+- **Endpoint:** `DELETE api/school-subjects/{id}`
 - **Path Variable:**
   - `id` - ID of the school subject to delete.
 - **Response:**
@@ -347,7 +347,7 @@ This Spring Boot `AssignmentController` provides RESTful endpoints for assigning
 }
 ```
 
-- **Endpoint:** `POST /api/assignment/assign/studentsToClasses`
+- **Endpoint:** `POST /api/assignment/students/to/classes`
 - **Request Body:**
   - List of `StudentToSchoolClassAssignmentRequest` objects representing student-to-school-class assignments.
 - **Response:**
@@ -469,7 +469,7 @@ This Spring Boot `AssignmentController` provides RESTful endpoints for assigning
 ]
 ```
 
-- **Endpoint:** `POST /api/assignment/assign/subjectsToGrades`
+- **Endpoint:** `POST /api/assignment/subjects/to/grades`
 - **Request Body:**
   - List of `SubjectsToGradesAssignmentRequest` objects representing subject-to-grade assignments.
 - **Response:**
@@ -514,7 +514,7 @@ This Spring Boot `AssignmentController` provides RESTful endpoints for assigning
 ]
 ```
 
-- **Endpoint:** `POST /api/assignment/assign/teachersToSubjects`
+- **Endpoint:** `POST /api/assignment/teachers/to/subjects`
 - **Request Body:**
   - List of `TeachersToSubjectsAssignmentRequest` objects representing teacher-to-subject assignments.
 - **Response:**
@@ -534,7 +534,7 @@ This Spring Boot `AssignmentController` provides RESTful endpoints for assigning
 ```
 
 
-- **Endpoint:** `POST /api/assignment/assign/teachersToClasses`
+- **Endpoint:** `POST /api/assignment/teachers/to/classes`
 - **Request Body:**
   - List of `TeacherToSchoolClassAssignmentRequest` objects representing teacher-to-school-class assignments.
 - **Response:**
@@ -545,7 +545,7 @@ This Spring Boot `AssignmentController` provides RESTful endpoints for assigning
 
 ##### Automatically Assign Teachers to Classes
 
-- **Endpoint:** `POST /api/assignment/assign/teachersToClasses/auto`
+- **Endpoint:** `POST /api/assignment/teachers/to/classes/auto`
 - **Response:**
   - Returns "ok" if successful.
   - `500 Internal Server Error` with hire recommendations if not enough teachers are available.
@@ -569,7 +569,7 @@ This Spring Boot `TimetableController` provides RESTful endpoints for managing t
 
 ##### Create Timetable
 
-- **Endpoint:** `POST /api/timetable/create`
+- **Endpoint:** `POST /api/timetables/create`
 - **Response:**
   - Returns the created timetable as a `TimetableDto` if successful.
   - `409 Conflict` with hire recommendations if not enough teachers are available.
@@ -577,7 +577,7 @@ This Spring Boot `TimetableController` provides RESTful endpoints for managing t
 
 ##### Generate Excel File
 
-- **Endpoint:** `POST /api/timetable/generate_exel`
+- **Endpoint:** `POST /api/timetables/excel`
 - **Request Parameter:**
   - `timetableId` - ID of the timetable to generate an Excel file.
 - **Response:**
@@ -586,7 +586,7 @@ This Spring Boot `TimetableController` provides RESTful endpoints for managing t
 
 ##### Get Timetable by ID
 
-- **Endpoint:** `GET /api/timetable/{id}`
+- **Endpoint:** `GET /api/timetables/{id}`
 - **Path Variable:**
   - `id` - ID of the timetable to retrieve.
 - **Response:**
