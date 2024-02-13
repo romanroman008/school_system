@@ -1,30 +1,25 @@
 package com.example.SchoolSystem.school.web.controllers;
 
-import com.example.SchoolSystem.school.entities.person.Address;
-import com.example.SchoolSystem.school.entities.person.PersonInformation;
-import com.example.SchoolSystem.school.entities.person.student.Student;
-import com.example.SchoolSystem.school.entities.person.student.service.IStudentService;
-import com.example.SchoolSystem.school.entities.schoolClass.Grade;
-import com.example.SchoolSystem.school.web.dto.student.StudentDto;
-import com.example.SchoolSystem.school.web.dto.student.StudentRequest;
-import com.example.SchoolSystem.school.web.dto.student.converters.StudentConverter;
+import com.example.SchoolSystem.school.person.Address;
+import com.example.SchoolSystem.school.person.PersonInformation;
+import com.example.SchoolSystem.school.student.Student;
+import com.example.SchoolSystem.school.student.service.IStudentService;
+import com.example.SchoolSystem.school.schoolClass.Grade;
+import com.example.SchoolSystem.school.student.StudentDto;
+import com.example.SchoolSystem.school.student.StudentRequest;
+import com.example.SchoolSystem.school.student.StudentConverter;
 import jakarta.persistence.EntityExistsException;
-import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.function.Executable;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 
 import static org.mockito.Mockito.*;
 
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.hateoas.EntityModel;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.mock.web.MockHttpServletRequest;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 

@@ -2,9 +2,8 @@ package com.example.SchoolSystem.school.timetable.timetablePlainObjects.subject;
 
 
 
-import com.example.SchoolSystem.school.entities.schoolClass.Grade;
+import com.example.SchoolSystem.school.schoolClass.Grade;
 import lombok.Getter;
-import lombok.ToString;
 
 import java.util.Objects;
 

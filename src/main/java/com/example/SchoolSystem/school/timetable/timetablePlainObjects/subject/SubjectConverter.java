@@ -2,9 +2,8 @@ package com.example.SchoolSystem.school.timetable.timetablePlainObjects.subject;
 
 
 
-import com.example.SchoolSystem.school.entities.schoolClass.Grade;
-import com.example.SchoolSystem.school.entities.schoolClass.SchoolClass;
-import com.example.SchoolSystem.school.entities.schoolSubject.SchoolSubject;
+import com.example.SchoolSystem.school.schoolClass.Grade;
+import com.example.SchoolSystem.school.schoolSubject.SchoolSubject;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package com.example.SchoolSystem.school.exceptions;
 
-import com.example.SchoolSystem.school.web.dto.student.StudentRequest;
+import com.example.SchoolSystem.school.student.StudentRequest;
 
 public class StudentsAgeException extends RuntimeException{
     StudentRequest studentRequest;

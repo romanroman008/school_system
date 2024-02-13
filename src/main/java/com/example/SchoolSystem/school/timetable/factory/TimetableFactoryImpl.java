@@ -1,17 +1,16 @@
 package com.example.SchoolSystem.school.timetable.factory;
 
 
-import com.example.SchoolSystem.school.entities.person.teacher.Teacher;
-import com.example.SchoolSystem.school.entities.person.teacher.service.ITeacherService;
-import com.example.SchoolSystem.school.entities.schoolClass.SchoolClass;
-import com.example.SchoolSystem.school.entities.schoolClass.service.ISchoolClassService;
+import com.example.SchoolSystem.school.teacher.Teacher;
+import com.example.SchoolSystem.school.teacher.service.ITeacherService;
+import com.example.SchoolSystem.school.schoolClass.SchoolClass;
+import com.example.SchoolSystem.school.schoolClass.service.ISchoolClassService;
 import com.example.SchoolSystem.school.timetable.timetablePlainObjects.Timetable;
 import com.example.SchoolSystem.school.timetable.timetablePlainObjects.schoolClass.SchoolClassConverter;
 import com.example.SchoolSystem.school.timetable.timetablePlainObjects.teacher.TeacherConverter;
 import com.example.SchoolSystem.school.timetable.timetablePlainObjects.time.Week;
 import com.example.SchoolSystem.school.timetable.validator.ITimetableValidator;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.*;

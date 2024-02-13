@@ -1,10 +1,10 @@
 package com.example.SchoolSystem.school.timetable.converter;
 
-import com.example.SchoolSystem.printer.timetable.TimetableExcel;
+import com.example.SchoolSystem.school.printer.timetable.TimetableExcel;
 import com.example.SchoolSystem.school.timetable.timetablePlainObjects.Timetable;
 import com.example.SchoolSystem.school.timetable.timetablePlainObjects.lesson.LessonConverter;
-import com.example.SchoolSystem.school.web.dto.freePeriod.FreePeriodConverter;
-import com.example.SchoolSystem.school.web.dto.timetable.TimetableDto;
+import com.example.SchoolSystem.school.freePeriod.FreePeriodConverter;
+import com.example.SchoolSystem.school.timetable.TimetableDto;
 
 public class TimetableConverter {
 

@@ -1,7 +1,7 @@
 package com.example.SchoolSystem.school.timetable.validator;
 
-import com.example.SchoolSystem.school.entities.person.teacher.Teacher;
-import com.example.SchoolSystem.school.entities.schoolClass.SchoolClass;
+import com.example.SchoolSystem.school.teacher.Teacher;
+import com.example.SchoolSystem.school.schoolClass.SchoolClass;
 import com.example.SchoolSystem.school.exceptions.NotEnoughTeachersException;
 import com.example.SchoolSystem.school.timetable.timetablePlainObjects.HireRecommendation;
 import com.example.SchoolSystem.school.timetable.timetablePlainObjects.schoolClass.ClassTimetable;

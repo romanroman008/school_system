@@ -1,17 +1,13 @@
 package com.example.SchoolSystem.school.web.controllers;
 
 
-import com.example.SchoolSystem.school.entities.schoolClass.SchoolClass;
-import com.example.SchoolSystem.school.entities.schoolClass.service.ISchoolClassService;
-import com.example.SchoolSystem.school.web.dto.schoolClass.SchoolClassDto;
-import com.example.SchoolSystem.school.web.dto.schoolClass.converters.SchoolClassConverter;
-import com.example.SchoolSystem.school.web.dto.teacher.TeacherDto;
+import com.example.SchoolSystem.school.schoolClass.service.ISchoolClassService;
+import com.example.SchoolSystem.school.schoolClass.SchoolClassDto;
+import com.example.SchoolSystem.school.schoolClass.converters.SchoolClassConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.Link;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

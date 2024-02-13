@@ -1,7 +1,7 @@
 package com.example.SchoolSystem.school.timetable.timetablePlainObjects.teacher;
 
 
-import com.example.SchoolSystem.school.entities.person.teacher.Teacher;
+import com.example.SchoolSystem.school.teacher.Teacher;
 
 import java.util.List;
 

@@ -1,9 +1,9 @@
 package com.example.SchoolSystem.school.timetable.timetablePlainObjects.lesson;
 
 
-import com.example.SchoolSystem.school.entities.lesson.Lesson;
+import com.example.SchoolSystem.school.lesson.Lesson;
 import com.example.SchoolSystem.school.timetable.timetablePlainObjects.schoolClass.ClassTimetable;
-import com.example.SchoolSystem.school.web.dto.lesson.LessonDto;
+import com.example.SchoolSystem.school.lesson.LessonDto;
 
 import java.util.List;
 

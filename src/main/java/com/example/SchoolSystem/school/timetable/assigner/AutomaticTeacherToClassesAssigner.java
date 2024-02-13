@@ -1,12 +1,12 @@
 package com.example.SchoolSystem.school.timetable.assigner;
 
-import com.example.SchoolSystem.school.entities.person.teacher.service.ITeacherService;
-import com.example.SchoolSystem.school.entities.schoolSubject.SchoolSubject;
-import com.example.SchoolSystem.school.entities.schoolSubject.service.ISchoolSubjectService;
+import com.example.SchoolSystem.school.teacher.service.ITeacherService;
+import com.example.SchoolSystem.school.schoolSubject.SchoolSubject;
+import com.example.SchoolSystem.school.schoolSubject.service.ISchoolSubjectService;
 import com.example.SchoolSystem.school.timetable.timetablePlainObjects.teacher.TeacherConverter;
-import com.example.SchoolSystem.school.entities.person.teacher.Teacher;
-import com.example.SchoolSystem.school.entities.schoolClass.SchoolClass;
-import com.example.SchoolSystem.school.entities.schoolClass.service.ISchoolClassService;
+import com.example.SchoolSystem.school.teacher.Teacher;
+import com.example.SchoolSystem.school.schoolClass.SchoolClass;
+import com.example.SchoolSystem.school.schoolClass.service.ISchoolClassService;
 import com.example.SchoolSystem.school.timetable.timetablePlainObjects.teacher.TeacherTimetable;
 import com.example.SchoolSystem.school.timetable.timetablePlainObjects.schoolClass.ClassTimetable;
 import com.example.SchoolSystem.school.timetable.timetablePlainObjects.schoolClass.SchoolClassConverter;

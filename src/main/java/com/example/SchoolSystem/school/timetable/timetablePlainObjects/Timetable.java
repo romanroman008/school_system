@@ -6,7 +6,7 @@ package com.example.SchoolSystem.school.timetable.timetablePlainObjects;
 import com.example.SchoolSystem.school.timetable.timetablePlainObjects.lesson.FreePeriod;
 import com.example.SchoolSystem.school.timetable.timetablePlainObjects.time.Week;
 import com.example.SchoolSystem.school.timetable.timetablePlainObjects.lesson.LessonConverter;
-import com.example.SchoolSystem.school.entities.lesson.Lesson;
+import com.example.SchoolSystem.school.lesson.Lesson;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

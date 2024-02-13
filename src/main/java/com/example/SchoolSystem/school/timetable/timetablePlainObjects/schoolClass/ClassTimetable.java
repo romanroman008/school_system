@@ -1,8 +1,8 @@
 package com.example.SchoolSystem.school.timetable.timetablePlainObjects.schoolClass;
 
 
-import com.example.SchoolSystem.school.entities.schoolClass.AlphabeticalGrade;
-import com.example.SchoolSystem.school.entities.schoolClass.Grade;
+import com.example.SchoolSystem.school.schoolClass.AlphabeticalGrade;
+import com.example.SchoolSystem.school.schoolClass.Grade;
 import com.example.SchoolSystem.school.timetable.timetablePlainObjects.subject.SubjectTimetable;
 import com.example.SchoolSystem.school.timetable.timetablePlainObjects.teacher.TeacherTimetable;
 import lombok.Getter;

@@ -1,9 +1,9 @@
 package com.example.SchoolSystem.school.timetable.timetablePlainObjects.schoolClass;
 
 
-import com.example.SchoolSystem.school.entities.schoolClass.Grade;
-import com.example.SchoolSystem.school.entities.schoolClass.SchoolClass;
-import com.example.SchoolSystem.school.entities.schoolClass.SubjectToTeacherAssignment;
+import com.example.SchoolSystem.school.schoolClass.Grade;
+import com.example.SchoolSystem.school.schoolClass.SchoolClass;
+import com.example.SchoolSystem.school.schoolClass.SubjectToTeacherAssignment;
 import com.example.SchoolSystem.school.timetable.timetablePlainObjects.subject.SubjectConverter;
 import com.example.SchoolSystem.school.timetable.timetablePlainObjects.subject.SubjectTimetable;
 import com.example.SchoolSystem.school.timetable.timetablePlainObjects.teacher.TeacherConverter;

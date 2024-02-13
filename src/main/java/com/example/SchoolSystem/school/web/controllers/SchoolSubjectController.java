@@ -1,18 +1,14 @@
 package com.example.SchoolSystem.school.web.controllers;
 
-import com.example.SchoolSystem.school.entities.schoolSubject.SchoolSubject;
-import com.example.SchoolSystem.school.entities.schoolSubject.service.ISchoolSubjectService;
-import com.example.SchoolSystem.school.web.dto.schoolSubject.SchoolSubjectDto;
-import com.example.SchoolSystem.school.web.dto.schoolSubject.SchoolSubjectRequest;
-import com.example.SchoolSystem.school.web.dto.schoolSubject.converters.SchoolSubjectConverter;
-import jakarta.persistence.EntityNotFoundException;
+import com.example.SchoolSystem.school.schoolSubject.service.ISchoolSubjectService;
+import com.example.SchoolSystem.school.schoolSubject.SchoolSubjectDto;
+import com.example.SchoolSystem.school.schoolSubject.SchoolSubjectRequest;
+import com.example.SchoolSystem.school.schoolSubject.converters.SchoolSubjectConverter;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.Link;
-import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;

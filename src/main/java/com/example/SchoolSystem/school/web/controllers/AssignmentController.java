@@ -1,14 +1,13 @@
 package com.example.SchoolSystem.school.web.controllers;
 
-import com.example.SchoolSystem.school.entities.assignments.IAssignmentService;
-import com.example.SchoolSystem.school.entities.assignments.TeachersToSubjectsAssignmentStrategyImpl;
-import com.example.SchoolSystem.school.entities.schoolSubject.service.ISchoolSubjectAssignmentService;
-import com.example.SchoolSystem.school.exceptions.NotEnoughTeachersException;
+import com.example.SchoolSystem.school.assignments.*;
+import com.example.SchoolSystem.school.assignments.requests.StudentToSchoolClassAssignmentRequest;
+import com.example.SchoolSystem.school.assignments.requests.SubjectsToGradesAssignmentRequest;
+import com.example.SchoolSystem.school.assignments.requests.TeacherToSchoolClassAssignmentRequest;
+import com.example.SchoolSystem.school.assignments.requests.TeachersToSubjectsAssignmentRequest;
+import com.example.SchoolSystem.school.assignments.service.IAssignmentService;
 import com.example.SchoolSystem.school.timetable.assigner.IAutomaticTeacherToClassAssigner;
-import com.example.SchoolSystem.school.web.assignments.*;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.hateoas.CollectionModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

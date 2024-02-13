@@ -1,22 +1,16 @@
 package com.example.SchoolSystem.school.web.controllers;
 
 
-import com.example.SchoolSystem.school.entities.person.teacher.Teacher;
-import com.example.SchoolSystem.school.entities.person.teacher.service.ITeacherService;
-import com.example.SchoolSystem.school.web.dto.schoolSubject.SchoolSubjectDto;
-import com.example.SchoolSystem.school.web.dto.student.StudentDto;
-import com.example.SchoolSystem.school.web.dto.teacher.TeacherDto;
-import com.example.SchoolSystem.school.web.dto.teacher.TeacherRequest;
+import com.example.SchoolSystem.school.teacher.Teacher;
+import com.example.SchoolSystem.school.teacher.service.ITeacherService;
+import com.example.SchoolSystem.school.teacher.TeacherDto;
+import com.example.SchoolSystem.school.teacher.TeacherRequest;
 import com.example.SchoolSystem.school.web.dto.teacher.converters.TeacherConverter;
-import jakarta.persistence.EntityExistsException;
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.Link;
-import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
