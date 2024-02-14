@@ -20,7 +20,7 @@ public class StudentServiceImpl implements IStudentService {
 
     @Override
     public Student add(Student student) {
-        if (studentDao.existsByIDName(student.getPersonInformation().getIDNumber()))
+        if (studentDao.existsByIDNumber(student.getPersonInformation().getIDNumber()))
             throw new EntityExistsException("Student already exists");
 
         return studentDao.save(student);
@@ -51,7 +51,7 @@ public class StudentServiceImpl implements IStudentService {
     private List<String> getStudentsAlreadyExisting(List<Student> students){
         return students
                 .stream()
-                .filter(teacher -> studentDao.existsByIDName(teacher.getPersonInformation().getIDNumber()))
+                .filter(teacher -> studentDao.existsByIDNumber(teacher.getPersonInformation().getIDNumber()))
                 .map(Student::getFullName)
                 .toList();
     }

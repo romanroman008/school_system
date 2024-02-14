@@ -2,10 +2,11 @@ package com.example.SchoolSystem.school.web.controllers;
 
 
 import com.example.SchoolSystem.school.teacher.Teacher;
+import com.example.SchoolSystem.school.teacher.converters.TeacherConverter;
 import com.example.SchoolSystem.school.teacher.service.ITeacherService;
 import com.example.SchoolSystem.school.teacher.TeacherDto;
 import com.example.SchoolSystem.school.teacher.TeacherRequest;
-import com.example.SchoolSystem.school.web.dto.teacher.converters.TeacherConverter;
+
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;

@@ -11,8 +11,8 @@ import java.util.List;
 @Repository
 public interface IStudentDao  extends JpaRepository<Student,Long> {
 
-    @Query("SELECT CASE WHEN COUNT(s) > 0 THEN true ELSE false END FROM Student s WHERE s.personInformation.IDName = :IDName")
-    boolean existsByIDName(@Param("IDName") String IDName);
+    @Query("SELECT CASE WHEN COUNT(s) > 0 THEN true ELSE false END FROM Student s WHERE s.personInformation.IDNumber = :IDNumber")
+    boolean existsByIDNumber(@Param("IDNumber") String IDNumber);
 
     @Query("SELECT s FROM Student s WHERE s.isAssignedToClass = false")
     List<Student> findStudentsNotAssignedToClasses();

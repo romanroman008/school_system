@@ -50,7 +50,7 @@ class StudentServiceImplTest {
         @Test
         public void should_Return_GivenStudent(){
             //given
-            when(studentDao.existsByIDName(anyString())).thenReturn(false);
+            when(studentDao.existsByIDNumber(anyString())).thenReturn(false);
             when(studentDao.save(any())).thenReturn(student);
 
 
@@ -64,7 +64,7 @@ class StudentServiceImplTest {
         @Test
         public void should_Throw_EntityExistsException(){
             //given
-            when(studentDao.existsByIDName(anyString())).thenReturn(true);
+            when(studentDao.existsByIDNumber(anyString())).thenReturn(true);
 
 
             //when
@@ -81,7 +81,7 @@ class StudentServiceImplTest {
         @Test
         public void should_Return_GivenStudentsList_When_DatabaseDoesNotContainsGivenStudentsIdNumbers(){
             //given
-            when(studentDao.existsByIDName(anyString())).thenReturn(false);
+            when(studentDao.existsByIDNumber(anyString())).thenReturn(false);
             when(studentDao.saveAll(any())).thenReturn(students);
 
             //when
@@ -94,7 +94,7 @@ class StudentServiceImplTest {
         @Test
         public void should_Throw_EntityExistsException_When_StudentWithGivenIdNumberExists(){
             //given
-            when(studentDao.existsByIDName(anyString())).thenReturn(true);
+            when(studentDao.existsByIDNumber(anyString())).thenReturn(true);
 
             //when
             Executable executable = () -> studentService.addAll(students);

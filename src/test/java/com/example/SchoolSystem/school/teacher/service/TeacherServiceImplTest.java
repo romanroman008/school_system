@@ -1,8 +1,6 @@
 package com.example.SchoolSystem.school.teacher.service;
 
-import com.example.SchoolSystem.school.Students;
 import com.example.SchoolSystem.school.Teachers;
-import com.example.SchoolSystem.school.student.Student;
 import com.example.SchoolSystem.school.teacher.ITeacherDao;
 import com.example.SchoolSystem.school.teacher.Teacher;
 import jakarta.persistence.EntityExistsException;
@@ -14,7 +12,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.function.Executable;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.dao.DataIntegrityViolationException;
 
@@ -55,7 +52,7 @@ class TeacherServiceImplTest {
         @Test
         public void should_Return_GivenTeacher(){
             //given
-            when(teacherDao.existsByIDName(anyString())).thenReturn(false);
+            when(teacherDao.existsByIDNumber(anyString())).thenReturn(false);
             when(teacherDao.save(any())).thenReturn(teacher);
 
 
@@ -69,7 +66,7 @@ class TeacherServiceImplTest {
         @Test
         public void should_Throw_EntityExistsException(){
             //given
-            when(teacherDao.existsByIDName(anyString())).thenReturn(true);
+            when(teacherDao.existsByIDNumber(anyString())).thenReturn(true);
 
 
             //when
@@ -86,7 +83,7 @@ class TeacherServiceImplTest {
         @Test
         public void should_Return_GivenTeachersList_When_DatabaseDoesNotContainsGivenTeachersIdNumbers(){
             //given
-            when(teacherDao.existsByIDName(anyString())).thenReturn(false);
+            when(teacherDao.existsByIDNumber(anyString())).thenReturn(false);
             when(teacherDao.saveAll(any())).thenReturn(teachers);
 
             //when
@@ -99,7 +96,7 @@ class TeacherServiceImplTest {
         @Test
         public void should_Throw_EntityExistsException_When_TeacherWithGivenIdNumberExists(){
             //given
-            when(teacherDao.existsByIDName(anyString())).thenReturn(true);
+            when(teacherDao.existsByIDNumber(anyString())).thenReturn(true);
 
             //when
             Executable executable = () -> teacherService.addAll(teachers);

@@ -1,4 +1,4 @@
-package com.example.SchoolSystem.school.web.dto.teacher.converters;
+package com.example.SchoolSystem.school.teacher.converters;
 
 import com.example.SchoolSystem.school.AppConfig;
 import com.example.SchoolSystem.school.person.Address;

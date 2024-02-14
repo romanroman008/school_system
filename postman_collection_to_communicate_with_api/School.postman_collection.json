@@ -13,7 +13,13 @@
 					"name": "add school subject",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "X-API-VERSION",
+								"value": "1",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n    \"name\": \"History\",\r\n    \"hoursPerWeekPerGrade\": {\r\n        \"1\":\"2\",\r\n        \"2\":\"2\",\r\n        \"3\":\"2\",\r\n        \"4\":\"2\",\r\n        \"5\":\"2\",\r\n        \"6\":\"2\",\r\n        \"7\":\"2\",\r\n        \"8\":\"2\"\r\n    }\r\n   \r\n        \r\n}",
@@ -24,7 +30,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/schoolSubject",
+							"raw": "http://localhost:8080/api/school-subjects",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -32,7 +38,7 @@
 							"port": "8080",
 							"path": [
 								"api",
-								"schoolSubject"
+								"school-subjects"
 							]
 						}
 					},
@@ -42,7 +48,13 @@
 					"name": "add subjects with hours per grade",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "X-API-VERSION",
+								"value": "1",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "[\r\n    {\r\n        \"name\": \"Math\",\r\n        \"hoursPerWeekPerGrade\": {\r\n            \"1\": \"4\",\r\n            \"2\": \"4\",\r\n            \"3\": \"5\",\r\n            \"4\": \"5\",\r\n            \"5\": \"5\",\r\n            \"6\": \"6\",\r\n            \"7\": \"6\",\r\n            \"8\": \"6\"\r\n        }\r\n    },\r\n    {\r\n        \"name\": \"Polish\",\r\n        \"hoursPerWeekPerGrade\": {\r\n            \"1\": \"3\",\r\n            \"2\": \"3\",\r\n            \"3\": \"3\",\r\n            \"4\": \"5\",\r\n            \"5\": \"5\",\r\n            \"6\": \"5\",\r\n            \"7\": \"5\",\r\n            \"8\": \"5\"\r\n        }\r\n    },\r\n    {\r\n        \"name\": \"English\",\r\n        \"hoursPerWeekPerGrade\": {\r\n            \"1\": \"3\",\r\n            \"2\": \"3\",\r\n            \"3\": \"3\",\r\n            \"4\": \"3\",\r\n            \"5\": \"4\",\r\n            \"6\": \"4\",\r\n            \"7\": \"4\",\r\n            \"8\": \"4\"\r\n        }\r\n    },\r\n    {\r\n        \"name\": \"PE\",\r\n        \"hoursPerWeekPerGrade\": {\r\n            \"1\": \"3\",\r\n            \"2\": \"3\",\r\n            \"3\": \"3\",\r\n            \"4\": \"3\",\r\n            \"5\": \"3\",\r\n            \"6\": \"3\",\r\n            \"7\": \"3\",\r\n            \"8\": \"3\"\r\n        }\r\n    },\r\n    {\r\n        \"name\": \"Physics\",\r\n        \"hoursPerWeekPerGrade\": {\r\n            \"1\": \"2\",\r\n            \"2\": \"2\",\r\n            \"3\": \"2\",\r\n            \"4\": \"4\",\r\n            \"5\": \"4\",\r\n            \"6\": \"4\",\r\n            \"7\": \"4\",\r\n            \"8\": \"4\"\r\n        }\r\n    },\r\n    {\r\n        \"name\": \"Religion\",\r\n        \"hoursPerWeekPerGrade\": {\r\n            \"1\": \"1\",\r\n            \"2\": \"1\",\r\n            \"3\": \"1\",\r\n            \"4\": \"1\",\r\n            \"5\": \"1\",\r\n            \"6\": \"1\",\r\n            \"7\": \"0\",\r\n            \"8\": \"0\"\r\n        }\r\n    },\r\n    {\r\n        \"name\": \"Music\",\r\n        \"hoursPerWeekPerGrade\": {\r\n            \"1\": \"1\",\r\n            \"2\": \"1\",\r\n            \"3\": \"1\",\r\n            \"4\": \"1\",\r\n            \"5\": \"1\",\r\n            \"6\": \"1\",\r\n            \"7\": \"1\",\r\n            \"8\": \"1\"\r\n        }\r\n    },\r\n    {\r\n        \"name\": \"Chemistry\",\r\n        \"hoursPerWeekPerGrade\": {\r\n            \"1\": \"2\",\r\n            \"2\": \"2\",\r\n            \"3\": \"2\",\r\n            \"4\": \"2\",\r\n            \"5\": \"3\",\r\n            \"6\": \"3\",\r\n            \"7\": \"3\",\r\n            \"8\": \"3\"\r\n        }\r\n    }\r\n]\r\n\r\n",
@@ -53,7 +65,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/schoolSubject/all",
+							"raw": "http://localhost:8080/api/school-subjects/list",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -61,8 +73,8 @@
 							"port": "8080",
 							"path": [
 								"api",
-								"schoolSubject",
-								"all"
+								"school-subjects",
+								"list"
 							]
 						}
 					},
@@ -72,9 +84,15 @@
 					"name": "delete subject",
 					"request": {
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "X-API-VERSION",
+								"value": "1",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "http://localhost:8080/api/schoolSubject/2",
+							"raw": "http://localhost:8080/api/school-subjects/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -82,7 +100,7 @@
 							"port": "8080",
 							"path": [
 								"api",
-								"schoolSubject",
+								"school-subjects",
 								"2"
 							]
 						}
@@ -93,9 +111,24 @@
 					"name": "update subject",
 					"request": {
 						"method": "PUT",
-						"header": [],
+						"header": [
+							{
+								"key": "X-API-VERSION",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n    \"name\": \"Religion\",\r\n    \"hoursPerWeekPerGrade\": {\r\n    \"1\": 0,\r\n    \"2\": 0,\r\n    \"3\": 0,\r\n    \"4\": 0,\r\n    \"5\": 0,\r\n    \"6\": 1,\r\n    \"7\": 0,\r\n    \"8\": 0\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "http://localhost:8080/api/schoolSubject",
+							"raw": "http://localhost:8080/api/school-subjects/7",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -103,7 +136,8 @@
 							"port": "8080",
 							"path": [
 								"api",
-								"schoolSubject"
+								"school-subjects",
+								"7"
 							]
 						}
 					},
@@ -113,9 +147,15 @@
 					"name": "get subject by id",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "X-API-VERSION",
+								"value": "1",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "http://localhost:8080/api/schoolSubject/2",
+							"raw": "http://localhost:8080/api/school-subjects/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -123,7 +163,7 @@
 							"port": "8080",
 							"path": [
 								"api",
-								"schoolSubject",
+								"school-subjects",
 								"2"
 							]
 						}
@@ -134,9 +174,15 @@
 					"name": "get all subjects",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "X-API-VERSION",
+								"value": "1",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "http://localhost:8080/api/schoolSubject/all",
+							"raw": "http://localhost:8080/api/school-subjects",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -144,8 +190,14 @@
 							"port": "8080",
 							"path": [
 								"api",
-								"schoolSubject",
-								"all"
+								"school-subjects"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
 							]
 						}
 					},
@@ -160,7 +212,13 @@
 					"name": "add teacher",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "X-API-VERSION",
+								"value": "1",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n    \"firstName\":\"Jan\",\r\n    \"lastName\":\"Kowalski\",\r\n    \"pesel\":\"123123123\",\r\n    \"birthday\":\"21-03-1923\",\r\n    \"phone\":\"231 312 231\",\r\n    \"email\":\"jankowalski@gmail.com\",\r\n    \"city\":\"Warszawa\",\r\n    \"street\":\"Dzierżynskiego\",\r\n    \"houseNumber\":13,\r\n    \"flatNumber\":7,\r\n    \"salary\": 5000,\r\n    \"hoursPerWeek\":40\r\n}",
@@ -171,7 +229,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/teacher",
+							"raw": "http://localhost:8080/api/teachers",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -179,7 +237,7 @@
 							"port": "8080",
 							"path": [
 								"api",
-								"teacher"
+								"teachers"
 							]
 						}
 					},
@@ -189,7 +247,13 @@
 					"name": "add all teachers",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "X-API-VERSION",
+								"value": "1",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "\r\n[\r\n  {\r\n    \"firstName\": \"Arnold\",\r\n    \"lastName\": \"Schwarzenegger\",\r\n    \"pesel\": \"98121234567\",\r\n    \"birthday\": \"30-07-1967\",\r\n    \"phone\": \"555-1234\",\r\n    \"email\": \"arnold.schwarzenegger@example.com\",\r\n    \"city\": \"Los Angeles\",\r\n    \"street\": \"Hollywood Blvd\",\r\n    \"houseNumber\": 123,\r\n    \"flatNumber\": 45,\r\n    \"salary\": 8000,\r\n    \"hoursPerWeek\": 50\r\n  },\r\n  {\r\n    \"firstName\": \"Kieran\",\r\n    \"lastName\": \"Smith\",\r\n    \"pesel\": \"99010123456\",\r\n    \"birthday\": \"01-01-1999\",\r\n    \"phone\": \"555-5678\",\r\n    \"email\": \"kieran.smith@example.com\",\r\n    \"city\": \"London\",\r\n    \"street\": \"Baker Street\",\r\n    \"houseNumber\": 221,\r\n    \"flatNumber\": 7,\r\n    \"salary\": 6000,\r\n    \"hoursPerWeek\": 40\r\n  },\r\n  {\r\n    \"firstName\": \"Horacy\",\r\n    \"lastName\": \"Johnson\",\r\n    \"pesel\": \"88020234567\",\r\n    \"birthday\": \"02-02-1988\",\r\n    \"phone\": \"555-9876\",\r\n    \"email\": \"horacy.johnson@example.com\",\r\n    \"city\": \"New York\",\r\n    \"street\": \"Broadway\",\r\n    \"houseNumber\": 456,\r\n    \"flatNumber\": 12,\r\n    \"salary\": 7000,\r\n    \"hoursPerWeek\": 45\r\n  },\r\n  {\r\n    \"firstName\": \"Filemon\",\r\n    \"lastName\": \"Nowak\",\r\n    \"pesel\": \"90050567890\",\r\n    \"birthday\": \"05-05-1990\",\r\n    \"phone\": \"555-4321\",\r\n    \"email\": \"filemon.nowak@example.com\",\r\n    \"city\": \"Krakow\",\r\n    \"street\": \"Main Square\",\r\n    \"houseNumber\": 789,\r\n    \"flatNumber\": 23,\r\n    \"salary\": 5500,\r\n    \"hoursPerWeek\": 38\r\n  },\r\n  {\r\n    \"firstName\": \"Gerwazy\",\r\n    \"lastName\": \"Kowalski\",\r\n    \"pesel\": \"88101012345\",\r\n    \"birthday\": \"10-10-1988\",\r\n    \"phone\": \"555-8765\",\r\n    \"email\": \"gerwazy.kowalski@example.com\",\r\n    \"city\": \"Warsaw\",\r\n    \"street\": \"Polna\",\r\n    \"houseNumber\": 456,\r\n    \"flatNumber\": 34,\r\n    \"salary\": 6200,\r\n    \"hoursPerWeek\": 42\r\n  },\r\n  {\r\n    \"firstName\": \"Ponfacy\",\r\n    \"lastName\": \"Smith\",\r\n    \"pesel\": \"95020234567\",\r\n    \"birthday\": \"02-02-1995\",\r\n    \"phone\": \"555-2345\",\r\n    \"email\": \"ponfacy.smith@example.com\",\r\n    \"city\": \"London\",\r\n    \"street\": \"Oxford Street\",\r\n    \"houseNumber\": 123,\r\n    \"flatNumber\": 56,\r\n    \"salary\": 5800,\r\n    \"hoursPerWeek\": 39\r\n  },\r\n  {\r\n    \"firstName\": \"Pankracy\",\r\n    \"lastName\": \"Johnson\",\r\n    \"pesel\": \"87070723456\",\r\n    \"birthday\": \"07-07-1987\",\r\n    \"phone\": \"555-7654\",\r\n    \"email\": \"pankracy.johnson@example.com\",\r\n    \"city\": \"New York\",\r\n    \"street\": \"Fifth Avenue\",\r\n    \"houseNumber\": 789,\r\n    \"flatNumber\": 21,\r\n    \"salary\": 7000,\r\n    \"hoursPerWeek\": 44\r\n  },\r\n  {\r\n    \"firstName\": \"Ojeciec Pijo\",\r\n    \"lastName\": \"Williams\",\r\n    \"pesel\": \"92030334567\",\r\n    \"birthday\": \"03-03-1992\",\r\n    \"phone\": \"555-3456\",\r\n    \"email\": \"ojeciec.pijo@example.com\",\r\n    \"city\": \"Los Angeles\",\r\n    \"street\": \"Sunset Blvd\",\r\n    \"houseNumber\": 456,\r\n    \"flatNumber\": 67,\r\n    \"salary\": 7500,\r\n    \"hoursPerWeek\": 48\r\n  },\r\n  {\r\n    \"firstName\": \"Bonifacy\",\r\n    \"lastName\": \"Brown\",\r\n    \"pesel\": \"89080823456\",\r\n    \"birthday\": \"08-08-1989\",\r\n    \"phone\": \"555-6543\",\r\n    \"email\": \"bonifacy.brown@example.com\",\r\n    \"city\": \"San Francisco\",\r\n    \"street\": \"Golden Gate\",\r\n    \"houseNumber\": 123,\r\n    \"flatNumber\": 12,\r\n    \"salary\": 6700,\r\n    \"hoursPerWeek\": 41\r\n  },\r\n  {\r\n    \"firstName\": \"Alojzy\",\r\n    \"lastName\": \"Taylor\",\r\n    \"pesel\": \"91010134567\",\r\n    \"birthday\": \"01-01-1991\",\r\n    \"phone\": \"555-8765\",\r\n    \"email\": \"alojzy.taylor@example.com\",\r\n    \"city\": \"Chicago\",\r\n    \"street\": \"Michigan Avenue\",\r\n    \"houseNumber\": 789,\r\n    \"flatNumber\": 45,\r\n    \"salary\": 6200,\r\n    \"hoursPerWeek\": 40\r\n  },\r\n  {\r\n    \"firstName\": \"Hiacynty\",\r\n    \"lastName\": \"Clark\",\r\n    \"pesel\": \"86060623456\",\r\n    \"birthday\": \"06-06-1986\",\r\n    \"phone\": \"555-2345\",\r\n    \"email\": \"hiacynty.clark@example.com\",\r\n    \"city\": \"Boston\",\r\n    \"street\": \"Harvard Square\",\r\n    \"houseNumber\": 456,\r\n    \"flatNumber\": 34,\r\n    \"salary\": 6800,\r\n    \"hoursPerWeek\": 43\r\n  },\r\n  {\r\n    \"firstName\": \"Eugeniusz\",\r\n    \"lastName\": \"Jones\",\r\n    \"pesel\": \"94040434567\",\r\n    \"birthday\": \"04-04-1994\",\r\n    \"phone\": \"555-5432\",\r\n    \"email\": \"eugeniusz.jones@example.com\",\r\n    \"city\": \"Seattle\",\r\n    \"street\": \"Space Needle\",\r\n    \"houseNumber\": 123,\r\n    \"flatNumber\": 56,\r\n    \"salary\": 7000,\r\n    \"hoursPerWeek\": 42\r\n  },\r\n  {\r\n    \"firstName\": \"Ernest\",\r\n    \"lastName\": \"Smith\",\r\n    \"pesel\": \"90050523456\",\r\n    \"birthday\": \"05-05-1990\",\r\n    \"phone\": \"555-8765\",\r\n    \"email\": \"ernest.smith@example.com\",\r\n    \"city\": \"London\",\r\n    \"street\": \"Piccadilly Circus\",\r\n    \"houseNumber\": 789,\r\n    \"flatNumber\": 23,\r\n    \"salary\": 5900,\r\n    \"hoursPerWeek\": 39\r\n  },\r\n  {\r\n    \"firstName\": \"Debora\",\r\n    \"lastName\": \"Johnson\",\r\n    \"pesel\": \"96070734567\",\r\n    \"birthday\": \"07-07-1996\",\r\n    \"phone\": \"555-4321\",\r\n    \"email\": \"debora.johnson@example.com\",\r\n    \"city\": \"New York\",\r\n    \"street\": \"Times Square\",\r\n    \"houseNumber\": 456,\r\n    \"flatNumber\": 34,\r\n    \"salary\": 7100,\r\n    \"hoursPerWeek\": 41\r\n  },\r\n  {\r\n    \"firstName\": \"Estera\",\r\n    \"lastName\": \"Williams\",\r\n    \"pesel\": \"88080823456\",\r\n    \"birthday\": \"08-08-1988\",\r\n    \"phone\": \"555-2345\",\r\n    \"email\": \"estera.williams@example.com\",\r\n    \"city\": \"Los Angeles\",\r\n    \"street\": \"Rodeo Drive\",\r\n    \"houseNumber\": 123,\r\n    \"flatNumber\": 56,\r\n    \"salary\": 6900,\r\n    \"hoursPerWeek\": 43\r\n  },\r\n  {\r\n    \"firstName\": \"Esperal\",\r\n    \"lastName\": \"Brown\",\r\n    \"pesel\": \"95010134567\",\r\n    \"birthday\": \"01-01-1995\",\r\n    \"phone\": \"555-8765\",\r\n    \"email\": \"esperal.brown@example.com\",\r\n    \"city\": \"San Francisco\",\r\n    \"street\": \"Fisherman's Wharf\",\r\n    \"houseNumber\": 789,\r\n    \"flatNumber\": 23,\r\n    \"salary\": 6300,\r\n    \"hoursPerWeek\": 40\r\n  },\r\n  {\r\n    \"firstName\": \"Damazy\",\r\n    \"lastName\": \"Taylor\",\r\n    \"pesel\": \"87020223456\",\r\n    \"birthday\": \"02-02-1987\",\r\n    \"phone\": \"555-5432\",\r\n    \"email\": \"damazy.taylor@example.com\",\r\n    \"city\": \"Chicago\",\r\n    \"street\": \"Navy Pier\",\r\n    \"houseNumber\": 456,\r\n    \"flatNumber\": 34,\r\n    \"salary\": 7200,\r\n    \"hoursPerWeek\": 42\r\n  },\r\n  {\r\n    \"firstName\": \"T-1000\",\r\n    \"lastName\": \"Silver\",\r\n    \"pesel\": \"92070734567\",\r\n    \"birthday\": \"07-07-1992\",\r\n    \"phone\": \"555-4321\",\r\n    \"email\": \"t1000.silver@example.com\",\r\n    \"city\": \"Future\",\r\n    \"street\": \"Terminator Street\",\r\n    \"houseNumber\": 789,\r\n    \"flatNumber\": 45,\r\n    \"salary\": 8000,\r\n    \"hoursPerWeek\": 50\r\n  },\r\n  {\r\n    \"firstName\": \"Saruman\",\r\n    \"lastName\": \"White\",\r\n    \"pesel\": \"91010123456\",\r\n    \"birthday\": \"01-01-1991\",\r\n    \"phone\": \"555-8765\",\r\n    \"email\": \"saruman.white@example.com\",\r\n    \"city\": \"Isengard\",\r\n    \"street\": \"Orthanc\",\r\n    \"houseNumber\": 123,\r\n    \"flatNumber\": 56,\r\n    \"salary\": 6900,\r\n    \"hoursPerWeek\": 43\r\n  },\r\n  {\r\n    \"firstName\": \"Tyler Durden\",\r\n    \"lastName\": \"Durden\",\r\n    \"pesel\": \"98080834567\",\r\n    \"birthday\": \"08-08-1998\",\r\n    \"phone\": \"555-2345\",\r\n    \"email\": \"tyler.durden@example.com\",\r\n    \"city\": \"Wilmington\",\r\n    \"street\": \"Paper Street\",\r\n    \"houseNumber\": 789,\r\n    \"flatNumber\": 23,\r\n    \"salary\": 7100,\r\n    \"hoursPerWeek\": 41\r\n  },\r\n  {\r\n    \"firstName\": \"Andrea\",\r\n    \"lastName\": \"Bocelli\",\r\n    \"pesel\": \"59010134567\",\r\n    \"birthday\": \"22-09-1958\",\r\n    \"phone\": \"555-5432\",\r\n    \"email\": \"andrea.bocelli@example.com\",\r\n    \"city\": \"Lajatico\",\r\n    \"street\": \"Teatro del Silenzio\",\r\n    \"houseNumber\": 456,\r\n    \"flatNumber\": 34,\r\n    \"salary\": 7300,\r\n    \"hoursPerWeek\": 42\r\n  },\r\n  {\r\n    \"firstName\": \"Lucian\",\r\n    \"lastName\": \"Pavarotti\",\r\n    \"pesel\": \"55020223456\",\r\n    \"birthday\": \"12-10-1935\",\r\n    \"phone\": \"555-6543\",\r\n    \"email\": \"lucian.pavarotti@example.com\",\r\n    \"city\": \"Modena\",\r\n    \"street\": \"Strada Vignolese\",\r\n    \"houseNumber\": 123,\r\n    \"flatNumber\": 56,\r\n    \"salary\": 7400,\r\n    \"hoursPerWeek\": 43\r\n  }\r\n]\r\n",
@@ -200,7 +264,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/teacher/all",
+							"raw": "http://localhost:8080/api/teachers/list",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -208,8 +272,8 @@
 							"port": "8080",
 							"path": [
 								"api",
-								"teacher",
-								"all"
+								"teachers",
+								"list"
 							]
 						}
 					},
@@ -219,7 +283,13 @@
 					"name": "addAll 40Hours",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "X-API-VERSION",
+								"value": "1",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "\r\n[\r\n  {\r\n    \"firstName\": \"Arnold\",\r\n    \"lastName\": \"Schwarzenegger\",\r\n    \"pesel\": \"98121234567\",\r\n    \"birthday\": \"30-07-1967\",\r\n    \"phone\": \"555-1234\",\r\n    \"email\": \"arnold.schwarzenegger@example.com\",\r\n    \"city\": \"Los Angeles\",\r\n    \"street\": \"Hollywood Blvd\",\r\n    \"houseNumber\": 123,\r\n    \"flatNumber\": 45,\r\n    \"salary\": 8000,\r\n    \"hoursPerWeek\": 40\r\n  },\r\n  {\r\n    \"firstName\": \"Kieran\",\r\n    \"lastName\": \"Smith\",\r\n    \"pesel\": \"99010123456\",\r\n    \"birthday\": \"01-01-1999\",\r\n    \"phone\": \"555-5678\",\r\n    \"email\": \"kieran.smith@example.com\",\r\n    \"city\": \"London\",\r\n    \"street\": \"Baker Street\",\r\n    \"houseNumber\": 221,\r\n    \"flatNumber\": 7,\r\n    \"salary\": 6000,\r\n    \"hoursPerWeek\": 40\r\n  },\r\n  {\r\n    \"firstName\": \"Horacy\",\r\n    \"lastName\": \"Johnson\",\r\n    \"pesel\": \"88020234567\",\r\n    \"birthday\": \"02-02-1988\",\r\n    \"phone\": \"555-9876\",\r\n    \"email\": \"horacy.johnson@example.com\",\r\n    \"city\": \"New York\",\r\n    \"street\": \"Broadway\",\r\n    \"houseNumber\": 456,\r\n    \"flatNumber\": 12,\r\n    \"salary\": 7000,\r\n    \"hoursPerWeek\": 40\r\n  },\r\n  {\r\n    \"firstName\": \"Filemon\",\r\n    \"lastName\": \"Nowak\",\r\n    \"pesel\": \"90050567890\",\r\n    \"birthday\": \"05-05-1990\",\r\n    \"phone\": \"555-4321\",\r\n    \"email\": \"filemon.nowak@example.com\",\r\n    \"city\": \"Krakow\",\r\n    \"street\": \"Main Square\",\r\n    \"houseNumber\": 789,\r\n    \"flatNumber\": 23,\r\n    \"salary\": 5500,\r\n    \"hoursPerWeek\": 40\r\n  },\r\n  {\r\n    \"firstName\": \"Gerwazy\",\r\n    \"lastName\": \"Kowalski\",\r\n    \"pesel\": \"88101012345\",\r\n    \"birthday\": \"10-10-1988\",\r\n    \"phone\": \"555-8765\",\r\n    \"email\": \"gerwazy.kowalski@example.com\",\r\n    \"city\": \"Warsaw\",\r\n    \"street\": \"Polna\",\r\n    \"houseNumber\": 456,\r\n    \"flatNumber\": 34,\r\n    \"salary\": 6200,\r\n    \"hoursPerWeek\": 40\r\n  },\r\n  {\r\n    \"firstName\": \"Ponfacy\",\r\n    \"lastName\": \"Smith\",\r\n    \"pesel\": \"95020234567\",\r\n    \"birthday\": \"02-02-1995\",\r\n    \"phone\": \"555-2345\",\r\n    \"email\": \"ponfacy.smith@example.com\",\r\n    \"city\": \"London\",\r\n    \"street\": \"Oxford Street\",\r\n    \"houseNumber\": 123,\r\n    \"flatNumber\": 56,\r\n    \"salary\": 5800,\r\n    \"hoursPerWeek\": 40\r\n  },\r\n  {\r\n    \"firstName\": \"Pankracy\",\r\n    \"lastName\": \"Johnson\",\r\n    \"pesel\": \"87070723456\",\r\n    \"birthday\": \"07-07-1987\",\r\n    \"phone\": \"555-7654\",\r\n    \"email\": \"pankracy.johnson@example.com\",\r\n    \"city\": \"New York\",\r\n    \"street\": \"Fifth Avenue\",\r\n    \"houseNumber\": 789,\r\n    \"flatNumber\": 21,\r\n    \"salary\": 7000,\r\n    \"hoursPerWeek\": 40\r\n  },\r\n  {\r\n    \"firstName\": \"Ojeciec Pijo\",\r\n    \"lastName\": \"Williams\",\r\n    \"pesel\": \"92030334567\",\r\n    \"birthday\": \"03-03-1992\",\r\n    \"phone\": \"555-3456\",\r\n    \"email\": \"ojeciec.pijo@example.com\",\r\n    \"city\": \"Los Angeles\",\r\n    \"street\": \"Sunset Blvd\",\r\n    \"houseNumber\": 456,\r\n    \"flatNumber\": 67,\r\n    \"salary\": 7500,\r\n    \"hoursPerWeek\": 40\r\n  },\r\n  {\r\n    \"firstName\": \"Bonifacy\",\r\n    \"lastName\": \"Brown\",\r\n    \"pesel\": \"89080823456\",\r\n    \"birthday\": \"08-08-1989\",\r\n    \"phone\": \"555-6543\",\r\n    \"email\": \"bonifacy.brown@example.com\",\r\n    \"city\": \"San Francisco\",\r\n    \"street\": \"Golden Gate\",\r\n    \"houseNumber\": 123,\r\n    \"flatNumber\": 12,\r\n    \"salary\": 6700,\r\n    \"hoursPerWeek\": 40\r\n  },\r\n  {\r\n    \"firstName\": \"Alojzy\",\r\n    \"lastName\": \"Taylor\",\r\n    \"pesel\": \"91010134567\",\r\n    \"birthday\": \"01-01-1991\",\r\n    \"phone\": \"555-8765\",\r\n    \"email\": \"alojzy.taylor@example.com\",\r\n    \"city\": \"Chicago\",\r\n    \"street\": \"Michigan Avenue\",\r\n    \"houseNumber\": 789,\r\n    \"flatNumber\": 45,\r\n    \"salary\": 6200,\r\n    \"hoursPerWeek\": 40\r\n  },\r\n  {\r\n    \"firstName\": \"Hiacynty\",\r\n    \"lastName\": \"Clark\",\r\n    \"pesel\": \"86060623456\",\r\n    \"birthday\": \"06-06-1986\",\r\n    \"phone\": \"555-2345\",\r\n    \"email\": \"hiacynty.clark@example.com\",\r\n    \"city\": \"Boston\",\r\n    \"street\": \"Harvard Square\",\r\n    \"houseNumber\": 456,\r\n    \"flatNumber\": 34,\r\n    \"salary\": 6800,\r\n    \"hoursPerWeek\": 40\r\n  },\r\n  {\r\n    \"firstName\": \"Eugeniusz\",\r\n    \"lastName\": \"Jones\",\r\n    \"pesel\": \"94040434567\",\r\n    \"birthday\": \"04-04-1994\",\r\n    \"phone\": \"555-5432\",\r\n    \"email\": \"eugeniusz.jones@example.com\",\r\n    \"city\": \"Seattle\",\r\n    \"street\": \"Space Needle\",\r\n    \"houseNumber\": 123,\r\n    \"flatNumber\": 56,\r\n    \"salary\": 7000,\r\n    \"hoursPerWeek\": 40\r\n  },\r\n  {\r\n    \"firstName\": \"Ernest\",\r\n    \"lastName\": \"Smith\",\r\n    \"pesel\": \"90050523456\",\r\n    \"birthday\": \"05-05-1990\",\r\n    \"phone\": \"555-8765\",\r\n    \"email\": \"ernest.smith@example.com\",\r\n    \"city\": \"London\",\r\n    \"street\": \"Piccadilly Circus\",\r\n    \"houseNumber\": 789,\r\n    \"flatNumber\": 23,\r\n    \"salary\": 5900,\r\n    \"hoursPerWeek\": 40\r\n  },\r\n  {\r\n    \"firstName\": \"Debora\",\r\n    \"lastName\": \"Johnson\",\r\n    \"pesel\": \"96070734567\",\r\n    \"birthday\": \"07-07-1996\",\r\n    \"phone\": \"555-4321\",\r\n    \"email\": \"debora.johnson@example.com\",\r\n    \"city\": \"New York\",\r\n    \"street\": \"Times Square\",\r\n    \"houseNumber\": 456,\r\n    \"flatNumber\": 34,\r\n    \"salary\": 7100,\r\n    \"hoursPerWeek\": 40\r\n  },\r\n  {\r\n    \"firstName\": \"Estera\",\r\n    \"lastName\": \"Williams\",\r\n    \"pesel\": \"88080823456\",\r\n    \"birthday\": \"08-08-1988\",\r\n    \"phone\": \"555-2345\",\r\n    \"email\": \"estera.williams@example.com\",\r\n    \"city\": \"Los Angeles\",\r\n    \"street\": \"Rodeo Drive\",\r\n    \"houseNumber\": 123,\r\n    \"flatNumber\": 56,\r\n    \"salary\": 6900,\r\n    \"hoursPerWeek\": 40\r\n  },\r\n  {\r\n    \"firstName\": \"Esperal\",\r\n    \"lastName\": \"Brown\",\r\n    \"pesel\": \"95010134567\",\r\n    \"birthday\": \"01-01-1995\",\r\n    \"phone\": \"555-8765\",\r\n    \"email\": \"esperal.brown@example.com\",\r\n    \"city\": \"San Francisco\",\r\n    \"street\": \"Fisherman's Wharf\",\r\n    \"houseNumber\": 789,\r\n    \"flatNumber\": 23,\r\n    \"salary\": 6300,\r\n    \"hoursPerWeek\": 40\r\n  },\r\n  {\r\n    \"firstName\": \"Damazy\",\r\n    \"lastName\": \"Taylor\",\r\n    \"pesel\": \"87020223456\",\r\n    \"birthday\": \"02-02-1987\",\r\n    \"phone\": \"555-5432\",\r\n    \"email\": \"damazy.taylor@example.com\",\r\n    \"city\": \"Chicago\",\r\n    \"street\": \"Navy Pier\",\r\n    \"houseNumber\": 456,\r\n    \"flatNumber\": 34,\r\n    \"salary\": 7200,\r\n    \"hoursPerWeek\": 40\r\n  },\r\n  {\r\n    \"firstName\": \"T-1000\",\r\n    \"lastName\": \"Silver\",\r\n    \"pesel\": \"92070734567\",\r\n    \"birthday\": \"07-07-1992\",\r\n    \"phone\": \"555-4321\",\r\n    \"email\": \"t1000.silver@example.com\",\r\n    \"city\": \"Future\",\r\n    \"street\": \"Terminator Street\",\r\n    \"houseNumber\": 789,\r\n    \"flatNumber\": 45,\r\n    \"salary\": 8000,\r\n    \"hoursPerWeek\": 40\r\n  },\r\n  {\r\n    \"firstName\": \"Saruman\",\r\n    \"lastName\": \"White\",\r\n    \"pesel\": \"91010123456\",\r\n    \"birthday\": \"01-01-1991\",\r\n    \"phone\": \"555-8765\",\r\n    \"email\": \"saruman.white@example.com\",\r\n    \"city\": \"Isengard\",\r\n    \"street\": \"Orthanc\",\r\n    \"houseNumber\": 123,\r\n    \"flatNumber\": 56,\r\n    \"salary\": 6900,\r\n    \"hoursPerWeek\": 40\r\n  },\r\n  {\r\n    \"firstName\": \"Tyler Durden\",\r\n    \"lastName\": \"Durden\",\r\n    \"pesel\": \"98080834567\",\r\n    \"birthday\": \"08-08-1998\",\r\n    \"phone\": \"555-2345\",\r\n    \"email\": \"tyler.durden@example.com\",\r\n    \"city\": \"Wilmington\",\r\n    \"street\": \"Paper Street\",\r\n    \"houseNumber\": 789,\r\n    \"flatNumber\": 23,\r\n    \"salary\": 7100,\r\n    \"hoursPerWeek\": 40\r\n  },\r\n  {\r\n    \"firstName\": \"Andrea\",\r\n    \"lastName\": \"Bocelli\",\r\n    \"pesel\": \"59010134567\",\r\n    \"birthday\": \"22-09-1958\",\r\n    \"phone\": \"555-5432\",\r\n    \"email\": \"andrea.bocelli@example.com\",\r\n    \"city\": \"Lajatico\",\r\n    \"street\": \"Teatro del Silenzio\",\r\n    \"houseNumber\": 456,\r\n    \"flatNumber\": 34,\r\n    \"salary\": 7300,\r\n    \"hoursPerWeek\": 40\r\n  },\r\n  {\r\n    \"firstName\": \"Lucian\",\r\n    \"lastName\": \"Pavarotti\",\r\n    \"pesel\": \"55020223456\",\r\n    \"birthday\": \"12-10-1935\",\r\n    \"phone\": \"555-6543\",\r\n    \"email\": \"lucian.pavarotti@example.com\",\r\n    \"city\": \"Modena\",\r\n    \"street\": \"Strada Vignolese\",\r\n    \"houseNumber\": 123,\r\n    \"flatNumber\": 56,\r\n    \"salary\": 7400,\r\n    \"hoursPerWeek\": 40\r\n  }\r\n]\r\n",
@@ -230,7 +300,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/teacher/all",
+							"raw": "http://localhost:8080/api/teachers/list",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -238,8 +308,8 @@
 							"port": "8080",
 							"path": [
 								"api",
-								"teacher",
-								"all"
+								"teachers",
+								"list"
 							]
 						}
 					},
@@ -249,9 +319,15 @@
 					"name": "get teacher by id",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "X-API-VERSION",
+								"value": "1",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "http://localhost:8080/api/teacher/2",
+							"raw": "http://localhost:8080/api/teachers/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -259,7 +335,7 @@
 							"port": "8080",
 							"path": [
 								"api",
-								"teacher",
+								"teachers",
 								"2"
 							]
 						}
@@ -270,9 +346,15 @@
 					"name": "get all teachers",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "X-API-VERSION",
+								"value": "1",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "http://localhost:8080/api/teacher/all",
+							"raw": "http://localhost:8080/api/teachers",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -280,8 +362,7 @@
 							"port": "8080",
 							"path": [
 								"api",
-								"teacher",
-								"all"
+								"teachers"
 							]
 						}
 					},
@@ -291,7 +372,13 @@
 					"name": "update teacher",
 					"request": {
 						"method": "PUT",
-						"header": [],
+						"header": [
+							{
+								"key": "X-API-VERSION",
+								"value": "1",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n    \"firstName\":\"Jan\",\r\n    \"lastName\":\"Kowalski\",\r\n    \"pesel\":\"123123123\",\r\n    \"birthday\":\"21-03-1912\",\r\n    \"phone\":\"231 312 231\",\r\n    \"email\":\"jankowalski@gmail.com\",\r\n    \"city\":\"Warszawa\",\r\n    \"street\":\"Dzierżynskiego\",\r\n    \"houseNumber\":13,\r\n    \"flatNumber\":7,\r\n    \"salary\": 5000,\r\n    \"hoursPerWeek\":40\r\n}",
@@ -302,7 +389,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/teacher/2",
+							"raw": "http://localhost:8080/api/teachers/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -310,7 +397,7 @@
 							"port": "8080",
 							"path": [
 								"api",
-								"teacher",
+								"teachers",
 								"2"
 							]
 						}
@@ -341,7 +428,13 @@
 							]
 						},
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "X-API-VERSION",
+								"value": "1",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n    \"firstName\":\"Jan\",\r\n    \"lastName\":\"Kowalski\",\r\n    \"pesel\":\"12313153\",\r\n    \"birthday\":\"21-03-2012\",\r\n    \"phone\":\"231 312 231\",\r\n    \"email\":\"jankowalski@ga\",\r\n    \"city\":\"Warszawa\",\r\n    \"street\":\"Dzierżynskiego\",\r\n    \"houseNumber\":1,\r\n    \"flatNumber\":7,\r\n    \"gradeToBirthdayDeflection\":1\r\n}",
@@ -352,7 +445,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/student",
+							"raw": "http://localhost:8080/api/students",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -360,7 +453,7 @@
 							"port": "8080",
 							"path": [
 								"api",
-								"student"
+								"students"
 							]
 						}
 					},
@@ -385,7 +478,13 @@
 							]
 						},
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "X-API-VERSION",
+								"value": "1",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "[\r\n    {\r\n        \"firstName\": \"Michael\",\r\n        \"lastName\": \"Scott\",\r\n        \"pesel\": \"70010111111\",\r\n        \"birthday\": \"01-01-2009\",\r\n        \"phone\": \"111 111 111\",\r\n        \"email\": \"michael.scott@gmail.com\",\r\n        \"city\": \"Scranton\",\r\n        \"street\": \"Dunder Mifflin Blvd\",\r\n        \"houseNumber\": 42,\r\n        \"flatNumber\": 7\r\n    },\r\n    {\r\n        \"firstName\": \"Dwight\",\r\n        \"lastName\": \"Schrute\",\r\n        \"pesel\": \"70010222222\",\r\n        \"birthday\": \"02-02-2009\",\r\n        \"phone\": \"222 222 222\",\r\n        \"email\": \"dwight.schrute@gmail.com\",\r\n        \"city\": \"Schrute Farms\",\r\n        \"street\": \"Beet Street\",\r\n        \"houseNumber\": 13,\r\n        \"flatNumber\": 9\r\n    },\r\n    {\r\n        \"firstName\": \"Jim\",\r\n        \"lastName\": \"Halpert\",\r\n        \"pesel\": \"70010333333\",\r\n        \"birthday\": \"03-03-2009\",\r\n        \"phone\": \"333 333 333\",\r\n        \"email\": \"jim.halpert@gmail.com\",\r\n        \"city\": \"Scranton\",\r\n        \"street\": \"Prankster Lane\",\r\n        \"houseNumber\": 27,\r\n        \"flatNumber\": 3\r\n    },\r\n    {\r\n        \"firstName\": \"Pam\",\r\n        \"lastName\": \"Beesly\",\r\n        \"pesel\": \"70010444444\",\r\n        \"birthday\": \"04-04-2009\",\r\n        \"phone\": \"444 444 444\",\r\n        \"email\": \"pam.beesly@gmail.com\",\r\n        \"city\": \"Scranton\",\r\n        \"street\": \"Artistic Avenue\",\r\n        \"houseNumber\": 15,\r\n        \"flatNumber\": 12\r\n    },\r\n    {\r\n        \"firstName\": \"Ricky\",\r\n        \"lastName\": \"Trailer\",\r\n        \"pesel\": \"70010555555\",\r\n        \"birthday\": \"05-05-2010\",\r\n        \"phone\": \"555 555 555\",\r\n        \"email\": \"ricky.trailer@gmail.com\",\r\n        \"city\": \"Sunnyvale\",\r\n        \"street\": \"Trailer Park Way\",\r\n        \"houseNumber\": 420,\r\n        \"flatNumber\": 8\r\n    },\r\n    {\r\n        \"firstName\": \"Julian\",\r\n        \"lastName\": \"Boys\",\r\n        \"pesel\": \"70010666666\",\r\n        \"birthday\": \"06-06-2010\",\r\n        \"phone\": \"666 666 666\",\r\n        \"email\": \"julian.boys@gmail.com\",\r\n        \"city\": \"Sunnyvale\",\r\n        \"street\": \"Liquor Lane\",\r\n        \"houseNumber\": 69,\r\n        \"flatNumber\": 2\r\n    },\r\n    {\r\n        \"firstName\": \"Bubbles\",\r\n        \"lastName\": \"Trailer\",\r\n        \"pesel\": \"70010777777\",\r\n        \"birthday\": \"07-07-2010\",\r\n        \"phone\": \"777 777 777\",\r\n        \"email\": \"bubbles.trailer@gmail.com\",\r\n        \"city\": \"Sunnyvale\",\r\n        \"street\": \"Kitty Corner\",\r\n        \"houseNumber\": 123,\r\n        \"flatNumber\": 6\r\n    },\r\n    {\r\n        \"firstName\": \"Darth\",\r\n        \"lastName\": \"Vader\",\r\n        \"pesel\": \"70010888888\",\r\n        \"birthday\": \"08-08-2010\",\r\n        \"phone\": \"888 888 888\",\r\n        \"email\": \"darth.vader@gmail.com\",\r\n        \"city\": \"Death Star\",\r\n        \"street\": \"Dark Side Avenue\",\r\n        \"houseNumber\": 66,\r\n        \"flatNumber\": 13\r\n    },\r\n    {\r\n        \"firstName\": \"Luke\",\r\n        \"lastName\": \"Skywalker\",\r\n        \"pesel\": \"70010999999\",\r\n        \"birthday\": \"09-09-2011\",\r\n        \"phone\": \"999 999 999\",\r\n        \"email\": \"luke.skywalker@gmail.com\",\r\n        \"city\": \"Tatooine\",\r\n        \"street\": \"Force Lane\",\r\n        \"houseNumber\": 3,\r\n        \"flatNumber\": 7\r\n    },\r\n    {\r\n        \"firstName\": \"Princess\",\r\n        \"lastName\": \"Leia\",\r\n        \"pesel\": \"70011000000\",\r\n        \"birthday\": \"10-10-2011\",\r\n        \"phone\": \"000 000 000\",\r\n        \"email\": \"princess.leia@gmail.com\",\r\n        \"city\": \"Alderaan\",\r\n        \"street\": \"Royal Avenue\",\r\n        \"houseNumber\": 1,\r\n        \"flatNumber\": 5\r\n    },\r\n    {\r\n        \"firstName\": \"Harry\",\r\n        \"lastName\": \"Potter\",\r\n        \"pesel\": \"70011111111\",\r\n        \"birthday\": \"11-11-2011\",\r\n        \"phone\": \"111 111 111\",\r\n        \"email\": \"harry.potter@gmail.com\",\r\n        \"city\": \"Hogwarts\",\r\n        \"street\": \"Wizardry Lane\",\r\n        \"houseNumber\": 7,\r\n        \"flatNumber\": 4\r\n    },\r\n    {\r\n        \"firstName\": \"Hermione\",\r\n        \"lastName\": \"Granger\",\r\n        \"pesel\": \"70011222222\",\r\n        \"birthday\": \"12-12-2011\",\r\n        \"phone\": \"222 222 222\",\r\n        \"email\": \"hermione.granger@gmail.com\",\r\n        \"city\": \"Hogsmeade\",\r\n        \"street\": \"Intellectual Street\",\r\n        \"houseNumber\": 15,\r\n        \"flatNumber\": 9\r\n    },\r\n    {\r\n        \"firstName\": \"Ron\",\r\n        \"lastName\": \"Weasley\",\r\n        \"pesel\": \"70011333333\",\r\n        \"birthday\": \"01-01-2012\",\r\n        \"phone\": \"333 333 333\",\r\n        \"email\": \"ron.weasley@gmail.com\",\r\n        \"city\": \"The Burrow\",\r\n        \"street\": \"Ginger Lane\",\r\n        \"houseNumber\": 9,\r\n        \"flatNumber\": 6\r\n    },\r\n    {\r\n        \"firstName\": \"Sheldon\",\r\n        \"lastName\": \"Cooper\",\r\n        \"pesel\": \"70011444444\",\r\n        \"birthday\": \"02-02-2012\",\r\n        \"phone\": \"444 444 444\",\r\n        \"email\": \"sheldon.cooper@gmail.com\",\r\n        \"city\": \"Pasadena\",\r\n        \"street\": \"Genius Avenue\",\r\n        \"houseNumber\": 73,\r\n        \"flatNumber\": 2\r\n    },\r\n    {\r\n        \"firstName\": \"Leonard\",\r\n        \"lastName\": \"Hofstadter\",\r\n        \"pesel\": \"70011555555\",\r\n        \"birthday\": \"03-03-2012\",\r\n        \"phone\": \"555 555 555\",\r\n        \"email\": \"leonard.hofstadter@gmail.com\",\r\n        \"city\": \"Pasadena\",\r\n        \"street\": \"Experimental Street\",\r\n        \"houseNumber\": 11,\r\n        \"flatNumber\": 8\r\n    },\r\n    {\r\n        \"firstName\": \"Penny\",\r\n        \"lastName\": \"Teller\",\r\n        \"pesel\": \"70011666666\",\r\n        \"birthday\": \"04-04-2012\",\r\n        \"phone\": \"666 666 666\",\r\n        \"email\": \"penny@gmail.com\",\r\n        \"city\": \"Pasadena\",\r\n        \"street\": \"Aspiring Actress Lane\",\r\n        \"houseNumber\": 27,\r\n        \"flatNumber\": 5\r\n    },\r\n    {\r\n        \"firstName\": \"George\",\r\n        \"lastName\": \"Costanza\",\r\n        \"pesel\": \"70011777777\",\r\n        \"birthday\": \"05-05-2013\",\r\n        \"phone\": \"777 777 777\",\r\n        \"email\": \"george.costanza@gmail.com\",\r\n        \"city\": \"New York\",\r\n        \"street\": \"Comedy Lane\",\r\n        \"houseNumber\": 8,\r\n        \"flatNumber\": 4\r\n    },\r\n    {\r\n        \"firstName\": \"Elaine\",\r\n        \"lastName\": \"Benes\",\r\n        \"pesel\": \"70011888888\",\r\n        \"birthday\": \"06-06-2013\",\r\n        \"phone\": \"888 888 888\",\r\n        \"email\": \"elaine.benes@gmail.com\",\r\n        \"city\": \"New York\",\r\n        \"street\": \"Artistic Avenue\",\r\n        \"houseNumber\": 15,\r\n        \"flatNumber\": 9\r\n    },\r\n    {\r\n        \"firstName\": \"Jerry\",\r\n        \"lastName\": \"Seinfeld\",\r\n        \"pesel\": \"70011999999\",\r\n        \"birthday\": \"07-07-2013\",\r\n        \"phone\": \"999 999 999\",\r\n        \"email\": \"jerry.seinfeld@gmail.com\",\r\n        \"city\": \"New York\",\r\n        \"street\": \"Stand-up Street\",\r\n        \"houseNumber\": 1,\r\n        \"flatNumber\": 5\r\n    },\r\n    {\r\n        \"firstName\": \"Jon\",\r\n        \"lastName\": \"Snow\",\r\n        \"pesel\": \"70012000000\",\r\n        \"birthday\": \"08-08-2013\",\r\n        \"phone\": \"000 000 000\",\r\n        \"email\": \"jon.snow@gmail.com\",\r\n        \"city\": \"Winterfell\",\r\n        \"street\": \"King in the North Avenue\",\r\n        \"houseNumber\": 7,\r\n        \"flatNumber\": 4\r\n    },\r\n    {\r\n        \"firstName\": \"Daenerys\",\r\n        \"lastName\": \"Targaryen\",\r\n        \"pesel\": \"70012111111\",\r\n        \"birthday\": \"09-09-2014\",\r\n        \"phone\": \"111 111 111\",\r\n        \"email\": \"daenerys.targaryen@gmail.com\",\r\n        \"city\": \"Dragonstone\",\r\n        \"street\": \"Mother of Dragons Lane\",\r\n        \"houseNumber\": 3,\r\n        \"flatNumber\": 7\r\n    },\r\n    {\r\n        \"firstName\": \"Tyrion\",\r\n        \"lastName\": \"Lannister\",\r\n        \"pesel\": \"70012222222\",\r\n        \"birthday\": \"10-10-2014\",\r\n        \"phone\": \"222 222 222\",\r\n        \"email\": \"tyrion.lannister@gmail.com\",\r\n        \"city\": \"Casterly Rock\",\r\n        \"street\": \"Wit and Wine Street\",\r\n        \"houseNumber\": 5,\r\n        \"flatNumber\": 12\r\n    },\r\n    {\r\n        \"firstName\": \"Walter\",\r\n        \"lastName\": \"White\",\r\n        \"pesel\": \"70012333333\",\r\n        \"birthday\": \"11-11-2014\",\r\n        \"phone\": \"333 333 333\",\r\n        \"email\": \"walter.white@gmail.com\",\r\n        \"city\": \"Albuquerque\",\r\n        \"street\": \"Chemistry Avenue\",\r\n        \"houseNumber\": 42,\r\n        \"flatNumber\": 8\r\n    },\r\n    {\r\n        \"firstName\": \"Jesse\",\r\n        \"lastName\": \"Pinkman\",\r\n        \"pesel\": \"70012444444\",\r\n        \"birthday\": \"12-12-2014\",\r\n        \"phone\": \"444 444 444\",\r\n        \"email\": \"jesse.pinkman@gmail.com\",\r\n        \"city\": \"Albuquerque\",\r\n        \"street\": \"Breaking Bad Boulevard\",\r\n        \"houseNumber\": 13,\r\n        \"flatNumber\": 9\r\n    },\r\n    {\r\n        \"firstName\": \"Saul\",\r\n        \"lastName\": \"Goodman\",\r\n        \"pesel\": \"70012555555\",\r\n        \"birthday\": \"01-01-2015\",\r\n        \"phone\": \"555 555 555\",\r\n        \"email\": \"saul.goodman@gmail.com\",\r\n        \"city\": \"Albuquerque\",\r\n        \"street\": \"Legal Lane\",\r\n        \"houseNumber\": 27,\r\n        \"flatNumber\": 3\r\n    },\r\n    {\r\n        \"firstName\": \"Sherlock\",\r\n        \"lastName\": \"Holmes\",\r\n        \"pesel\": \"70012666666\",\r\n        \"birthday\": \"02-02-2015\",\r\n        \"phone\": \"666 666 666\",\r\n        \"email\": \"sherlock.holmes@gmail.com\",\r\n        \"city\": \"London\",\r\n        \"street\": \"Detective Drive\",\r\n        \"houseNumber\": 221,\r\n        \"flatNumber\": 1\r\n    },\r\n    {\r\n        \"firstName\": \"John\",\r\n        \"lastName\": \"Watson\",\r\n        \"pesel\": \"70012777777\",\r\n        \"birthday\": \"03-03-2015\",\r\n        \"phone\": \"777 777 777\",\r\n        \"email\": \"john.watson@gmail.com\",\r\n        \"city\": \"London\",\r\n        \"street\": \"Doctor's Lane\",\r\n        \"houseNumber\": 8,\r\n        \"flatNumber\": 4\r\n    },\r\n    {\r\n        \"firstName\": \"Arya\",\r\n        \"lastName\": \"Stark\",\r\n        \"pesel\": \"70012888888\",\r\n        \"birthday\": \"04-04-2015\",\r\n        \"phone\": \"888 888 888\",\r\n        \"email\": \"arya.stark@gmail.com\",\r\n        \"city\": \"Winterfell\",\r\n        \"street\": \"Faceless Street\",\r\n        \"houseNumber\": 15,\r\n        \"flatNumber\": 9\r\n    },\r\n    {\r\n        \"firstName\": \"Chandler\",\r\n        \"lastName\": \"Bing\",\r\n        \"pesel\": \"70012999999\",\r\n        \"birthday\": \"05-05-2016\",\r\n        \"phone\": \"999 999 999\",\r\n        \"email\": \"chandler.bing@gmail.com\",\r\n        \"city\": \"New York\",\r\n        \"street\": \"Sarcastic Avenue\",\r\n        \"houseNumber\": 1,\r\n        \"flatNumber\": 5\r\n    },\r\n    {\r\n        \"firstName\": \"Joey\",\r\n        \"lastName\": \"Tribbiani\",\r\n        \"pesel\": \"70013000000\",\r\n        \"birthday\": \"06-06-2016\",\r\n        \"phone\": \"000 000 000\",\r\n        \"email\": \"joey.tribbiani@gmail.com\",\r\n        \"city\": \"New York\",\r\n        \"street\": \"Actor's Lane\",\r\n        \"houseNumber\": 7,\r\n        \"flatNumber\": 4\r\n    },\r\n    {\r\n        \"firstName\": \"Ross\",\r\n        \"lastName\": \"Geller\",\r\n        \"pesel\": \"70013111111\",\r\n        \"birthday\": \"07-07-2016\",\r\n        \"phone\": \"111 111 111\",\r\n        \"email\": \"ross.geller@gmail.com\",\r\n        \"city\": \"New York\",\r\n        \"street\": \"Paleontologist Place\",\r\n        \"houseNumber\": 3,\r\n        \"flatNumber\": 7\r\n    },\r\n    {\r\n        \"firstName\": \"Monica\",\r\n        \"lastName\": \"Geller\",\r\n        \"pesel\": \"70013222222\",\r\n        \"birthday\": \"08-08-2016\",\r\n        \"phone\": \"222 222 222\",\r\n        \"email\": \"monica.geller@gmail.com\",\r\n        \"city\": \"New York\",\r\n        \"street\": \"Chef's Street\",\r\n        \"houseNumber\": 5,\r\n        \"flatNumber\": 12\r\n    }\r\n]\r\n\r\n    \r\n",
@@ -396,7 +495,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/student/all",
+							"raw": "http://localhost:8080/api/students/list",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -404,8 +503,8 @@
 							"port": "8080",
 							"path": [
 								"api",
-								"student",
-								"all"
+								"students",
+								"list"
 							]
 						}
 					},
@@ -418,9 +517,15 @@
 							"type": "noauth"
 						},
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "X-API-VERSION",
+								"value": "1",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "http://localhost:8080/api/student/all",
+							"raw": "http://localhost:8080/api/students",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -428,8 +533,7 @@
 							"port": "8080",
 							"path": [
 								"api",
-								"student",
-								"all"
+								"students"
 							]
 						}
 					},
@@ -439,9 +543,15 @@
 					"name": "delete student",
 					"request": {
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "X-API-VERSION",
+								"value": "1",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "http://localhost:8080/api/student/2",
+							"raw": "http://localhost:8080/api/students/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -449,7 +559,7 @@
 							"port": "8080",
 							"path": [
 								"api",
-								"student",
+								"students",
 								"2"
 							]
 						}
@@ -460,9 +570,15 @@
 					"name": "get student by id",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "X-API-VERSION",
+								"value": "1",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "http://localhost:8080/api/student/2",
+							"raw": "http://localhost:8080/api/students",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -470,8 +586,7 @@
 							"port": "8080",
 							"path": [
 								"api",
-								"student",
-								"2"
+								"students"
 							]
 						}
 					},
@@ -486,7 +601,13 @@
 					"name": "assign subjects to classes",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "X-API-VERSION",
+								"value": "1",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "[\r\n    {\r\n        \"grade\":1,\r\n        \"subjects\":[\r\n            \"Math\",\r\n            \"Polish\",\r\n            \"Chemistry\",\r\n            \"English\",\r\n            \"PE\",\r\n            \"Physics\",\r\n            \"Religion\",\r\n            \"Music\"\r\n        ]\r\n    },\r\n     {\r\n        \"grade\":2,\r\n        \"subjects\":[\r\n           \"Math\",\r\n            \"Polish\",\r\n            \"Chemistry\",\r\n            \"English\",\r\n            \"PE\",\r\n            \"Physics\",\r\n            \"Religion\",\r\n            \"Music\"\r\n        ]\r\n    },\r\n     {\r\n        \"grade\":3,\r\n        \"subjects\":[\r\n           \"Math\",\r\n            \"Polish\",\r\n            \"Chemistry\",\r\n            \"English\",\r\n            \"PE\",\r\n            \"Physics\",\r\n            \"Religion\",\r\n            \"Music\"\r\n        ]\r\n    },\r\n     {\r\n        \"grade\":4,\r\n        \"subjects\":[\r\n           \"Math\",\r\n            \"Polish\",\r\n            \"Chemistry\",\r\n            \"English\",\r\n            \"PE\",\r\n            \"Physics\",\r\n            \"Religion\",\r\n            \"Music\"\r\n        ]\r\n    },\r\n     {\r\n        \"grade\":5,\r\n        \"subjects\":[\r\n            \"Math\",\r\n            \"Polish\",\r\n            \"Chemistry\",\r\n            \"English\",\r\n            \"PE\",\r\n            \"Physics\",\r\n            \"Religion\",\r\n            \"Music\"\r\n        ]\r\n    },\r\n     {\r\n        \"grade\":6,\r\n        \"subjects\":[\r\n           \"Math\",\r\n            \"Polish\",\r\n            \"Chemistry\",\r\n            \"English\",\r\n            \"PE\",\r\n            \"Physics\",\r\n            \"Religion\",\r\n            \"Music\"\r\n        ]\r\n    },\r\n     {\r\n        \"grade\":7,\r\n        \"subjects\":[\r\n            \"Math\",\r\n            \"Polish\",\r\n            \"Chemistry\",\r\n            \"English\",\r\n            \"PE\",\r\n            \"Physics\",\r\n            \"Religion\",\r\n            \"Music\"\r\n        ]\r\n    },\r\n     {\r\n        \"grade\":8,\r\n        \"subjects\":[\r\n            \"Math\",\r\n            \"Polish\",\r\n            \"Chemistry\",\r\n            \"English\",\r\n            \"PE\",\r\n            \"Physics\",\r\n            \"Religion\",\r\n            \"Music\"\r\n        ]\r\n    }\r\n]",
@@ -497,7 +618,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/assignment/assign/subjectsToGrades",
+							"raw": "http://localhost:8080/api/assignment/subjects/to/grades",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -506,8 +627,9 @@
 							"path": [
 								"api",
 								"assignment",
-								"assign",
-								"subjectsToGrades"
+								"subjects",
+								"to",
+								"grades"
 							]
 						}
 					},
@@ -517,7 +639,13 @@
 					"name": "assign subjects to teachers",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "X-API-VERSION",
+								"value": "1",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "[\r\n    {\"teacherId\": 1, \"teacherName\": \"Arnold\", \"subjectId\": 1, \"subjectName\": \"Math\"},\r\n    {\"teacherId\": 2, \"teacherName\": \"Kieran\", \"subjectId\": 1, \"subjectName\": \"Math\"},\r\n    {\"teacherId\": 3, \"teacherName\": \"Horacy\", \"subjectId\": 1, \"subjectName\": \"Math\"},\r\n    {\"teacherId\": 4, \"teacherName\": \"Filemon\", \"subjectId\": 1, \"subjectName\": \"Math\"},\r\n    {\"teacherId\": 5, \"teacherName\": \"Gerwazy\", \"subjectId\": 1, \"subjectName\": \"Math\"},\r\n    {\"teacherId\": 6, \"teacherName\": \"Ponfacy\", \"subjectId\": 1, \"subjectName\": \"Math\"},\r\n    \r\n    {\"teacherId\": 7, \"teacherName\": \"Pankracy\", \"subjectId\": 2, \"subjectName\": \"Polish\"},\r\n    {\"teacherId\": 8, \"teacherName\": \"Ojeciec Pijo\", \"subjectId\": 2, \"subjectName\": \"Polish\"},\r\n    {\"teacherId\": 9, \"teacherName\": \"Bonifacy\", \"subjectId\": 2, \"subjectName\": \"Polish\"},\r\n    {\"teacherId\": 10, \"teacherName\": \"Alojzy\", \"subjectId\": 2, \"subjectName\": \"Polish\"},\r\n    \r\n    {\"teacherId\": 11, \"teacherName\": \"Hiacynty\", \"subjectId\": 3, \"subjectName\": \"English\"},\r\n    {\"teacherId\": 12, \"teacherName\": \"Eugeniusz\", \"subjectId\": 3, \"subjectName\": \"English\"},\r\n    {\"teacherId\": 13, \"teacherName\": \"Ernest\", \"subjectId\": 3, \"subjectName\": \"English\"},\r\n    \r\n    {\"teacherId\": 14, \"teacherName\": \"Debora\", \"subjectId\": 4, \"subjectName\": \"PE\"},\r\n    {\"teacherId\": 15, \"teacherName\": \"Estera\", \"subjectId\": 4, \"subjectName\": \"PE\"},\r\n    {\"teacherId\": 16, \"teacherName\": \"Esperal\", \"subjectId\": 4, \"subjectName\": \"PE\"},\r\n    \r\n    {\"teacherId\": 17, \"teacherName\": \"Damazy\", \"subjectId\": 5, \"subjectName\": \"Physics\"},\r\n    {\"teacherId\": 18, \"teacherName\": \"T-1000\", \"subjectId\": 5, \"subjectName\": \"Physics\"},\r\n    \r\n    {\"teacherId\": 19, \"teacherName\": \"Saruman\", \"subjectId\": 6, \"subjectName\": \"Religion\"},\r\n    {\"teacherId\": 20, \"teacherName\": \"Tyler Durden\", \"subjectId\": 7, \"subjectName\": \"Music\"},\r\n    \r\n    {\"teacherId\": 21, \"teacherName\": \"Andrea\", \"subjectId\": 8, \"subjectName\": \"Chemistry\"},\r\n    {\"teacherId\": 22, \"teacherName\": \"Lucian\", \"subjectId\": 8, \"subjectName\": \"Chemistry\"}\r\n]",
@@ -528,7 +656,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/assignment/assign/teachersToSubjects",
+							"raw": "http://localhost:8080/api/assignment/teachers/to/subjects",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -537,8 +665,9 @@
 							"path": [
 								"api",
 								"assignment",
-								"assign",
-								"teachersToSubjects"
+								"teachers",
+								"to",
+								"subjects"
 							]
 						}
 					},
@@ -548,7 +677,13 @@
 					"name": "assign subject to teacher",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "X-API-VERSION",
+								"value": "1",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "[\r\n    {\"teacherId\": 23, \"subjectId\": 5},\r\n    {\"teacherId\": 23, \"subjectId\": 8}\r\n]",
@@ -559,7 +694,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/assignment/assign/teachersToSubjects",
+							"raw": "http://localhost:8080/api/assignment/teachers/to/subjects",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -568,8 +703,9 @@
 							"path": [
 								"api",
 								"assignment",
-								"assign",
-								"teachersToSubjects"
+								"teachers",
+								"to",
+								"subjects"
 							]
 						}
 					},
@@ -579,7 +715,13 @@
 					"name": "assign student to class",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "X-API-VERSION",
+								"value": "1",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "[\r\n{\r\n    \"studentId\": 1,\r\n    \"schoolClassId\": 2\r\n}\r\n]",
@@ -590,7 +732,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/assignment/assign/studentsToClasses",
+							"raw": "http://localhost:8080/api/assignment/students/to/classes",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -599,8 +741,9 @@
 							"path": [
 								"api",
 								"assignment",
-								"assign",
-								"studentsToClasses"
+								"students",
+								"to",
+								"classes"
 							]
 						}
 					},
@@ -610,9 +753,15 @@
 					"name": "teachers to classes auto",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "X-API-VERSION",
+								"value": "1",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "http://localhost:8080/api/assignment/assign/teachersToClasses/auto",
+							"raw": "http://localhost:8080/api/assignment/teachers/to/classes/auto",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -621,8 +770,9 @@
 							"path": [
 								"api",
 								"assignment",
-								"assign",
-								"teachersToClasses",
+								"teachers",
+								"to",
+								"classes",
 								"auto"
 							]
 						}
@@ -638,13 +788,19 @@
 					"name": "create school classes",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "X-API-VERSION",
+								"value": "1",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/schoolClass/create?strategy=1",
+							"raw": "http://localhost:8080/api/school-classes/create?strategy=1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -652,7 +808,7 @@
 							"port": "8080",
 							"path": [
 								"api",
-								"schoolClass",
+								"school-classes",
 								"create"
 							],
 							"query": [
@@ -672,13 +828,19 @@
 					},
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "X-API-VERSION",
+								"value": "1",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/schoolClass",
+							"raw": "http://localhost:8080/api/school-classes",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -686,7 +848,7 @@
 							"port": "8080",
 							"path": [
 								"api",
-								"schoolClass"
+								"school-classes"
 							]
 						}
 					},
@@ -701,9 +863,15 @@
 					"name": "create timetable",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "X-API-VERSION",
+								"value": "1",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "http://localhost:8080/api/timetable/create",
+							"raw": "http://localhost:8080/api/timetables/create",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -711,7 +879,7 @@
 							"port": "8080",
 							"path": [
 								"api",
-								"timetable",
+								"timetables",
 								"create"
 							]
 						}
@@ -722,9 +890,15 @@
 					"name": "generate exel with timetable",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "X-API-VERSION",
+								"value": "1",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "http://localhost:8080/api/timetable/excel?id=1",
+							"raw": "http://localhost:8080/api/timetables/excel/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -732,14 +906,9 @@
 							"port": "8080",
 							"path": [
 								"api",
-								"timetable",
-								"excel"
-							],
-							"query": [
-								{
-									"key": "id",
-									"value": "1"
-								}
+								"timetables",
+								"excel",
+								"1"
 							]
 						}
 					},
