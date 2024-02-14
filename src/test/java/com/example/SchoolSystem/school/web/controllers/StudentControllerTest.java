@@ -58,7 +58,7 @@ class StudentControllerTest {
         PersonInformation personInformation = new PersonInformation.Builder()
                 .setFirstName("Firstname")
                 .setLastName("Lastname")
-                .setPesel("pesel")
+                .setIDNumber("pesel")
                 .setBirthday(LocalDate.parse(birthday, DateTimeFormatter.ofPattern("dd-MM-yyyy")))
                 .setPhone("phone")
                 .setEmail("email@mail.com")
@@ -97,7 +97,7 @@ class StudentControllerTest {
 
                 .setFirstName("Firstname")
                 .setLastName("Lastname")
-                .setPesel("pesel")
+                .setIDNumber("pesel")
                 .setBirthday(LocalDate.parse(birthday, DateTimeFormatter.ofPattern("dd-MM-yyyy")))
                 .setPhone("phone")
                 .setEmail("email@mail.com")

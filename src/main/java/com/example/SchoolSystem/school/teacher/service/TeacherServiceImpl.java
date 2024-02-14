@@ -23,7 +23,7 @@ public class TeacherServiceImpl implements ITeacherService {
 
     @Override
     public Teacher add(Teacher teacher) {
-        if (!teacherDao.existsByPesel(teacher.getPersonInformation().getPesel()))
+        if (!teacherDao.existsByPesel(teacher.getPersonInformation().getIDNumber()))
             return teacherDao.save(teacher);
         throw new EntityExistsException(String.format("Teacher %s already exists",teacher.getFullName()));
     }
@@ -32,7 +32,7 @@ public class TeacherServiceImpl implements ITeacherService {
     public List<Teacher> addAll(List<Teacher> teachers) {
         List<String> teachersAlreadyExisting = teachers
                 .stream()
-                .filter(teacher -> teacherDao.existsByPesel(teacher.getPersonInformation().getPesel()))
+                .filter(teacher -> teacherDao.existsByPesel(teacher.getPersonInformation().getIDNumber()))
                 .map(Teacher::getFullName)
                 .toList();
         if (!teachersAlreadyExisting.isEmpty())

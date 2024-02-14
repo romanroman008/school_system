@@ -4,8 +4,6 @@ import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import java.time.LocalDate;
-
 @Getter
 @AllArgsConstructor
 public class StudentRequest {
@@ -15,7 +13,7 @@ public class StudentRequest {
     @NotBlank
     private String lastName;
     @NotBlank
-    private String pesel;
+    private String IDNumber;
     @NotBlank
     private String birthday;
     private String phone;

@@ -4,7 +4,6 @@ import com.example.SchoolSystem.school.student.IStudentDao;
 import com.example.SchoolSystem.school.student.Student;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
@@ -20,23 +19,37 @@ public class StudentServiceImpl implements IStudentService {
     private final IStudentDao studentDao;
 
     @Override
-    public Student add(@Valid Student student) {
-        if (!studentDao.existsByPesel(student.getPersonInformation().getPesel()))
-            return studentDao.save(student);
-        throw new EntityExistsException("Student already exists");
+    public Student add(Student student) {
+        if (studentDao.existsByPesel(student.getPersonInformation().getIDNumber()))
+            throw new EntityExistsException("Student already exists");
+
+        return studentDao.save(student);
+
     }
 
     @Override
     public List<Student> addAll(List<Student> students) {
+
+        if(checkIfStudentsListIsDistinct(students))
+            throw new IllegalArgumentException("List of students contains repetitions");
+
         List<String> teachersAlreadyExisting = students
                 .stream()
-                .filter(teacher -> studentDao.existsByPesel(teacher.getPersonInformation().getPesel()))
+                .filter(teacher -> studentDao.existsByPesel(teacher.getPersonInformation().getIDNumber()))
                 .map(Student::getFullName)
                 .toList();
         if (!teachersAlreadyExisting.isEmpty())
             throw new EntityExistsException(String.format("List of students contains already existing students: %s", teachersAlreadyExisting));
 
         return studentDao.saveAll(students);
+    }
+
+    private boolean checkIfStudentsListIsDistinct(List<Student> students){
+        return !(students
+                .stream()
+                .map(student -> student.getPersonInformation().getIDNumber())
+                .distinct()
+                .count() == students.size());
     }
 
     @Override
@@ -66,7 +79,7 @@ public class StudentServiceImpl implements IStudentService {
     @Override
     public Student findById(Long id) {
         Optional<Student> student = studentDao.findById(id);
-        if(student.isPresent())
+        if (student.isPresent())
             return student.get();
         throw new EntityNotFoundException("Student does not exists");
     }
@@ -75,7 +88,6 @@ public class StudentServiceImpl implements IStudentService {
     public List<Student> findAll() {
         return studentDao.findAll();
     }
-
 
 
     @Override

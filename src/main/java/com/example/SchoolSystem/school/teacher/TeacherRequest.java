@@ -3,10 +3,6 @@ package com.example.SchoolSystem.school.teacher;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.Setter;
-
-import java.time.LocalDate;
-import java.util.Date;
 
 @AllArgsConstructor
 @Getter
@@ -16,7 +12,7 @@ public class TeacherRequest {
     @NotBlank
     private String lastName;
     @NotBlank
-    private String pesel;
+    private String IDNumber;
     @NotBlank
     private String birthday;
     private String phone;

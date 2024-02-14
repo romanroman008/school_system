@@ -19,7 +19,7 @@ public class PersonInformation {
     private Long id;
     private String firstName;
     private String lastName;
-    private String pesel;
+    private String IDNumber;
     private LocalDate birthday;
     private String phone;
     private String email;
@@ -30,7 +30,7 @@ public class PersonInformation {
     private PersonInformation(Builder builder){
         this.firstName = builder.firstName;
         this.lastName = builder.lastName;
-        this.pesel = builder.pesel;
+        this.IDNumber = builder.IDNumber;
         this.birthday = builder.birthday;
         this.phone = builder.phone;
         this.email = builder.email;
@@ -40,7 +40,7 @@ public class PersonInformation {
     public static class Builder {
         private String firstName;
         private String lastName;
-        private String pesel;
+        private String IDNumber;
         private LocalDate birthday;
         private String phone;
         private String email;
@@ -58,8 +58,8 @@ public class PersonInformation {
             return this;
         }
 
-        public Builder setPesel(String pesel) {
-            this.pesel = pesel;
+        public Builder setIDNumber(String IDNumber) {
+            this.IDNumber = IDNumber;
             return this;
         }
 

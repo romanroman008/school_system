@@ -45,7 +45,7 @@ public class TeacherConverter {
         return new PersonInformation.Builder()
                 .setFirstName(request.getFirstName())
                 .setLastName(request.getLastName())
-                .setPesel(request.getPesel())
+                .setIDNumber(request.getIDNumber())
                 .setBirthday(LocalDate.parse(request.getBirthday(), appConfig.getFormatter()))
                 .setPhone(request.getPhone())
                 .setEmail(request.getEmail())
