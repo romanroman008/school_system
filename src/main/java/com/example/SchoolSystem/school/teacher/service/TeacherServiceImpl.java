@@ -23,25 +23,38 @@ public class TeacherServiceImpl implements ITeacherService {
 
     @Override
     public Teacher add(Teacher teacher) {
-        if (!teacherDao.existsByPesel(teacher.getPersonInformation().getIDNumber()))
+        if (!teacherDao.existsByIDName(teacher.getPersonInformation().getIDNumber()))
             return teacherDao.save(teacher);
         throw new EntityExistsException(String.format("Teacher %s already exists",teacher.getFullName()));
     }
 
     @Override
     public List<Teacher> addAll(List<Teacher> teachers) {
-        List<String> teachersAlreadyExisting = teachers
-                .stream()
-                .filter(teacher -> teacherDao.existsByPesel(teacher.getPersonInformation().getIDNumber()))
-                .map(Teacher::getFullName)
-                .toList();
+        if(checkIfTeachersListHasRepetitions(teachers))
+            throw new IllegalArgumentException("List of teachers contains repetitions");
+
+        List<String> teachersAlreadyExisting = getTeachersAlreadyExisting(teachers);
         if (!teachersAlreadyExisting.isEmpty())
             throw new EntityExistsException(String.format("List of teachers contains already existing teachers: %s", teachersAlreadyExisting));
 
         return teacherDao.saveAll(teachers);
     }
 
+    private boolean checkIfTeachersListHasRepetitions(List<Teacher> teachers){
+        return !(teachers
+                .stream()
+                .map(teacher -> teacher.getPersonInformation().getIDNumber())
+                .distinct()
+                .count() == teachers.size());
+    }
 
+    private List<String> getTeachersAlreadyExisting(List<Teacher> teachers){
+        return teachers
+                .stream()
+                .filter(teacher -> teacherDao.existsByIDName(teacher.getPersonInformation().getIDNumber()))
+                .map(Teacher::getFullName)
+                .toList();
+    }
 
     @Override
     public Teacher findById(Long id) {

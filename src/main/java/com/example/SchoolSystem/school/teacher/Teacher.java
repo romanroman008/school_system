@@ -42,7 +42,12 @@ public class Teacher{
     @ManyToMany(mappedBy = "teachers")
     private final Set<SchoolClass> teachingClasses = new HashSet<>();
 
-
+    public Teacher(PersonInformation personInformation, Address address, float salary, int hoursPerWeek) {
+        this.personInformation = personInformation;
+        this.address = address;
+        this.salary = salary;
+        this.hoursPerWeek = hoursPerWeek;
+    }
 
     public String getFullName(){
         return personInformation.getFirstName() + " " + personInformation.getLastName();

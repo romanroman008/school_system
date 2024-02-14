@@ -5,7 +5,6 @@ import com.example.SchoolSystem.school.student.IStudentDao;
 import com.example.SchoolSystem.school.student.Student;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
-import org.checkerframework.checker.units.qual.N;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -16,7 +15,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.dao.DataIntegrityViolationException;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -52,7 +50,7 @@ class StudentServiceImplTest {
         @Test
         public void should_Return_GivenStudent(){
             //given
-            when(studentDao.existsByPesel(anyString())).thenReturn(false);
+            when(studentDao.existsByIDName(anyString())).thenReturn(false);
             when(studentDao.save(any())).thenReturn(student);
 
 
@@ -66,7 +64,7 @@ class StudentServiceImplTest {
         @Test
         public void should_Throw_EntityExistsException(){
             //given
-            when(studentDao.existsByPesel(anyString())).thenReturn(true);
+            when(studentDao.existsByIDName(anyString())).thenReturn(true);
 
 
             //when
@@ -83,7 +81,7 @@ class StudentServiceImplTest {
         @Test
         public void should_Return_GivenStudentsList_When_DatabaseDoesNotContainsGivenStudentsIdNumbers(){
             //given
-            when(studentDao.existsByPesel(anyString())).thenReturn(false);
+            when(studentDao.existsByIDName(anyString())).thenReturn(false);
             when(studentDao.saveAll(any())).thenReturn(students);
 
             //when
@@ -96,7 +94,7 @@ class StudentServiceImplTest {
         @Test
         public void should_Throw_EntityExistsException_When_StudentWithGivenIdNumberExists(){
             //given
-            when(studentDao.existsByPesel(anyString())).thenReturn(true);
+            when(studentDao.existsByIDName(anyString())).thenReturn(true);
 
             //when
             Executable executable = () -> studentService.addAll(students);

@@ -10,8 +10,8 @@ import java.util.List;
 
 @Repository
 public interface ITeacherDao extends JpaRepository<Teacher,Long> {
-    @Query("SELECT CASE WHEN COUNT(t) > 0 then true ELSE false END FROM Teacher t WHERE t.personInformation.pesel = :pesel")
-    boolean existsByPesel(@Param("pesel") String pesel);
+    @Query("SELECT CASE WHEN COUNT(t) > 0 then true ELSE false END FROM Teacher t WHERE t.personInformation.IDName = :IDName")
+    boolean existsByIDName(@Param("IDName") String IDName);
 
     List<Teacher> findByTeachingSubjectsContains(SchoolSubject subject);
 }

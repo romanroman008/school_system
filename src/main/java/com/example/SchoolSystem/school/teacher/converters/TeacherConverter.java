@@ -26,12 +26,7 @@ public class TeacherConverter {
         return requests.stream().map(this::fromRequest).toList();
     }
     public Teacher fromRequest(TeacherRequest request){
-        Teacher teacher = new Teacher();
-        teacher.setAddress(createAddress(request));
-        teacher.setHoursPerWeek(request.getHoursPerWeek());
-        teacher.setPersonInformation(createPersonInformation(request));
-        teacher.setSalary(request.getSalary());
-        return teacher;
+        return new Teacher(createPersonInformation(request),createAddress(request), request.getSalary(), request.getHoursPerWeek());
     }
     private Address createAddress(TeacherRequest request) {
         return new Address.Builder().setCity(request.getCity())
